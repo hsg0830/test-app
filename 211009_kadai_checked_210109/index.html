@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>一画面での表示の切り替え</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div id="app" class="container">
+      <!-- 一覧 -->
+      <div v-if="isIndex">
+        <h1>登録されているお名前一覧</h1>
+        <table class="table mx-auto">
+          <thead>
+            <tr>
+              <th scope="col">名前</th>
+              <th>変更ボタン</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="user in users" :key="users.id">
+              <td>{{ user.name }}</td>
+              <!-- toEdit(user.name) から toEdit(user) へ変更しています -->
+              <td><button class="btn btn-primary" @click="toEdit(user)">変更</button></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2>お名前の新規登録</h2>
+        <button class="btn btn-info" @click="toCreate()">お名前の新規登録はこちらから</button>
+      </div>
+
+      <!-- ✅ 入力フォーム（isCreate と isEdit を統一しています） -->
+      <!-- ✅ （もちろん isCreate と isEdit で分けるのも戦略のひとつですが、入力ボックスが多くなってくるとその分タグが増えるので時短をする場合は統一することをおすすめです。） -->
+      <div v-if="isCreate || isEdit">
+        <h1 v-if="isCreate">新しいお名前を登録</h1>
+        <h1 v-else>お名前を変更</h1>
+        <div class="input-group mb-3">
+          <!-- ✅ placeholderのバインディングを変更し、v-model を追加しています -->
+          <input
+            type="text"
+            class="form-control"
+            placeholder="例：山田太郎"
+            v-model="currentUser.name"
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+          />
+          <!-- ✅ type="submit" はHTTP送信される可能性がでてきますので、Ajaxがメインの場合は button をおすすめします。 -->
+          <button type="button" class="btn btn-success" v-if="isCreate" @click="toIndex()">お名前を保存</button>
+          <button type="button" class="btn btn-warning" v-if="isEdit" @click="toIndex()">変更内容を保存</button>
+          <!----
+          <input type="submit" value="変更内容を保存" class="btn btn-warning" @click="toIndex()"/>
+          <input type="submit" value="お名前を保存" class="btn btn-success" v-else-if="isEdit" @click="toIndex()"/>
+          -->
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> -->
+    <script src="main.js"></script>
+  </body>
+</html>
