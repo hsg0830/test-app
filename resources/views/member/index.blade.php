@@ -47,8 +47,14 @@
           aria-describedby="basic-addon1"
         />
         <button type="button" class="btn btn-danger mr-2" @click="toIndex()">キャンセル</button>
+        <!--　`currentMember` は省略してもOKです -->
+        <!--
         <button type="button" class="btn btn-success" v-if="isCreate" @click="onSave(currentMember)">お名前を保存</button>
         <button type="button" class="btn btn-warning" v-if="isEdit" @click="onSave(currentMember)">変更内容を保存</button>
+        -->
+        <!--  また、引数がないときはカッコ()を省略できます  -->
+        <button type="button" class="btn btn-success" v-if="isCreate" @click="onSave">お名前を保存</button>
+        <button type="button" class="btn btn-warning" v-if="isEdit" @click="onSave">変更内容を保存</button>
       </div>
     </div>
   </div>
@@ -97,10 +103,22 @@
       },
       toEdit(member) {
         this.currentState = 'edit';
-        this.currentMember = member;
+
+        // オブジェクトを「別のもの」としてコピーします。
+        // これは、変更ボタンクリック -> タイトル変更 -> キャンセル -> 保存していないのに一覧のタイトル表示が変更になってしまうためです。
+        // （ post/index.blade.php は CKEditor を使っている関係上問題ないようになっていましたが、この部分のサンプルとしては適切でなかったです。すみません ^^;）
+        // [参考URL]:
+        // https://blog.capilano-fw.com/?p=7724#i-2
+
+        // this.currentMember = member;
+        this.currentMember = Object.assign({}, member);
+
       },
-      onSave(currentMember) {
-        // console.log(currentMember);
+
+      // this.currentMemberとして取得できるので、引数 `currentMember` は省略してもOKです
+      // onSave(currentMember) {
+
+      onSave() {
         if(confirm('保存します。よろしいですか？')) {
           let url = '';
           let method = '';
