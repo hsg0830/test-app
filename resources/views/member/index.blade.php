@@ -1,11 +1,10 @@
-<html>
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>名簿</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-</head>
-<body>
+@extends('common.app')
+
+@section('css')
+  <link rel="stylesheet" href="{{ asset('css/member.css') }}">
+@endsection
+
+@section('content')
   <div id="app" class="container p-3">
     <h1 class="mb-4">名簿管理</h1>
 
@@ -47,105 +46,13 @@
           aria-describedby="basic-addon1"
         />
         <button type="button" class="btn btn-danger mr-2" @click="toIndex()">キャンセル</button>
-        <button type="button" class="btn btn-success" v-if="isCreate" @click="onSave(currentMember)">お名前を保存</button>
-        <button type="button" class="btn btn-warning" v-if="isEdit" @click="onSave(currentMember)">変更内容を保存</button>
+        <button type="button" class="btn btn-success" v-if="isCreate" @click="onSave()">お名前を保存</button>
+        <button type="button" class="btn btn-warning" v-if="isEdit" @click="onSave()">変更内容を保存</button>
       </div>
     </div>
   </div>
+@endsection
 
-<script src="https://unpkg.com/vue@3.0.2/dist/vue.global.prod.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
-<script src="https://cdn.ckeditor.com/ckeditor5/24.0.0/classic/ckeditor.js"></script>
-<script>
-  Vue.createApp({
-    data() {
-      return {
-        currentState: 'index',
-        members: [],
-        currentMember: {},
-        // memberName: '',
-      }
-    },
-    computed: {
-      isIndex() {
-        return this.currentState === 'index';
-      },
-      isCreate() {
-        return this.currentState === 'create';
-      },
-      isEdit() {
-        return this.currentState === 'edit';
-      },
-    },
-    methods: {
-      getMembers() {
-        const url = '/member/list';
-        axios.get(url)
-          .then(response => {
-            this.members = response.data;
-          })
-          .catch(error => {
-            console.log(error);
-          });
-      },
-      toIndex() {
-        this.currentState = 'index';
-      },
-      toCreate() {
-        this.currentState = 'create';
-        this.currentMember = {};
-      },
-      toEdit(member) {
-        this.currentState = 'edit';
-        this.currentMember = member;
-      },
-      onSave(currentMember) {
-        // console.log(currentMember);
-        if(confirm('保存します。よろしいですか？')) {
-          let url = '';
-          let method = '';
-
-          if(this.isCreate) {
-            url = '/member';
-            method = 'POST';
-          } else if(this.isEdit) {
-            url = `/member/${this.currentMember.id}`;
-            method = 'PUT';
-          }
-
-          const params = {
-            _method: method,
-            name: this.currentMember.name,
-          };
-
-          axios.post(url, params)
-            .then(response => {
-              if(response.data.result === true) {
-                this.getMembers();
-                this.toIndex();
-              }
-            })
-            .catch(error => {
-              console.log(error);
-            });
-        }
-      },
-      onDelete(member) {
-        if(confirm('削除します。よろしいですか？')) {
-          const url = `/member/${member.id}`;
-          axios.delete(url)
-            .then(response => {
-              if(response.data.result === true) {
-                this.getMembers();
-              }
-          });
-        }
-      }
-    },
-    mounted() {
-      this.getMembers();
-    }
-  }).mount('#app');
-</script>
-</body>
-</html>
+@section('js')
+  <script src="{{ asset('/js/member.js') }}"></script>
+@endsection
