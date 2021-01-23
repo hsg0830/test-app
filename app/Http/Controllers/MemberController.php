@@ -31,6 +31,10 @@ class MemberController extends Controller
     $member->name = $request->name;
     $result = $member->save();
 
+    // return [
+    //   'result' => $result,
+    //   'test1' => 'test1'
+    // ];
     return ['result' => $result];
   }
 
