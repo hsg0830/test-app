@@ -6,8 +6,13 @@ Vue.createApp({
             currentMember: {},
             pwConfirm: "",
             errorStatus: 0,
-            errors: [],
+            // errors: [],
+            errors: {}, // 変更： エラーはオブジェクトで返ってきますのでこちらに変更しました
             // memberName: '',
+            sexes: {    // 追加： 性別をデータで管理するようにしました（ご提案）
+                1: '男',
+                2: '女'
+            }
         };
     },
     computed: {
@@ -47,6 +52,7 @@ Vue.createApp({
         },
         toIndex() {
             this.currentState = "index";
+            this.pwConfirm = ''; // キャンセルした場合のデータ初期化をしています
         },
         toCreate() {
             this.currentState = "create";
@@ -106,6 +112,10 @@ Vue.createApp({
                     sex: this.currentMember.sex,
                     password: this.currentMember.password,
                     // pwConfirm: this.pwConfirm,
+
+                    // 【追加】バリデーション・ルール「confirmed」の仕様にそって「password_confirmation」という名前で送信します
+                    // 参考記事： https://blog.capilano-fw.com/?p=341#Confirmed
+                    password_confirmation: this.pwConfirm,
                 };
 
                 axios
@@ -138,6 +148,13 @@ Vue.createApp({
                 });
             }
         },
+    },
+    watch: { // 追加
+        currentState() { // ステータスが変更になったとき毎回実行される部分
+
+            this.errorStatus = 0; // エラー・ステータスを初期化します
+
+        }
     },
     mounted() {
         this.getMembers();

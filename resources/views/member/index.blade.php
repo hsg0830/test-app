@@ -27,7 +27,10 @@
           <tr v-for="member in members" :key="member.id">
             <td v-text="member.name"></td>
             <td v-text="member.email"></td>
-            <td v-text="member.sex"></td>
+
+            <!-- 【変更】性別をデータから表示することで、性別一元管理しています -->
+            <td v-text="sexes[member.sex]"></td>
+
             <td>
               <button class="btn btn-primary mr-2" @click="toEdit(member)">変更</button>
               <button class="btn btn-danger mr-2" @click="onDelete(member)">削除</button>
@@ -69,8 +72,13 @@
         <label for="sex">性別：</label>
         <select id="sex" class="form-select" aria-label="MemberSexuality" v-model="currentMember.sex">
           {{-- <option selected>お選びください</option> --}}
-          <option value="1">男</option>
-          <option value="2">女</option>
+{{--          <option value="1">男</option>--}}
+{{--          <option value="2">女</option>--}}
+          <!-- 【変更】性別をデータから表示することで、一覧でも使えるようにしています -->
+          <option
+              v-for="(value,key) in sexes"
+              v-text="value"
+              :value="key"></option>
         </select>
       </div>
       <div class="input-group mb-3">

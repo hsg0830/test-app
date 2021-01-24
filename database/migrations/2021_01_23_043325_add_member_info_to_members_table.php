@@ -17,6 +17,9 @@ class AddMemberInfoToMembersTable extends Migration
             $table->string('email')->comment('メールアドレス');
             $table->string('password')->comment('パスワード');
             $table->unsignedInteger('sex')->default(0)->comment('性別');
+
+            // 【追加】今回、メールアドレスはログイン情報として使われるため、重複して登録できないようにします。
+            $table->unique('email');
         });
     }
 
