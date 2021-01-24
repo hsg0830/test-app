@@ -4,6 +4,7 @@ Vue.createApp({
       currentState: "index",
       members: [],
       currentMember: {},
+      pwConfirm: "",
       // memberName: '',
     };
   },
@@ -42,12 +43,41 @@ Vue.createApp({
       this.currentState = "edit";
       // this.currentMember = member; ※こうしたらキャンセルした場合に入力値が画面に反映されてしまう。
       this.currentMember = Object.assign({}, member);
+      this.currentMember.password = '';
     },
     onSave() {
       // console.log(this.currentMember);
+      // console.log(this.pwConfirm);
+
+      if(!this.currentMember.name) {
+        alert('お名前を入力してください。');
+        return;
+      }
+      if(!this.currentMember.email) {
+        alert('メールアドレスを入力してください。');
+        return;
+      }
+      if(!this.currentMember.sex) {
+        alert('性別を選択してください。');
+        return;
+      }
+      if(!this.currentMember.password) {
+        alert('パスワードを入力してください。');
+        return;
+      }
+      if(!this.pwConfirm) {
+        alert('確認のためパスワードをもう一度入力してください。');
+        return;
+      }
+      if(this.currentMember.password !== this.pwConfirm) {
+        alert('パスワードが一致しません。再度誤入力ください。');
+        return;
+      }
+
       if (confirm("保存します。よろしいですか？")) {
         let url = "";
         let method = "";
+
 
         if (this.isCreate) {
           url = "/member";
@@ -60,6 +90,10 @@ Vue.createApp({
         const params = {
           _method: method,
           name: this.currentMember.name,
+          email: this.currentMember.email,
+          sex: this.currentMember.sex,
+          password: this.currentMember.password,
+          // pwConfirm: this.pwConfirm,
         };
 
         axios

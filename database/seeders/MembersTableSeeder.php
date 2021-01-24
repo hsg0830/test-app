@@ -15,10 +15,13 @@ class MembersTableSeeder extends Seeder
     public function run()
     {
         //※シーディングの内容
-        for ($i = 0; $i < 25; $i++) {
+        for ($i = 1; $i < 6; $i++) {
 
             $member = new Member();
-            $member->name = 'テスト名 - ' . $i;
+            $member->name = 'メンバー' . $i;
+            $member->email = 'user' . $i . '@example.com';
+            $member->password = bcrypt('test1234');
+            $member->sex = 1;
             $member->save();
         }
     }
