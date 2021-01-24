@@ -8,9 +8,12 @@
   <div id="app" class="container p-3">
     <h1 class="mb-4">名簿管理</h1>
 
+    <div v-if="hasErrors">
+      <div class="alert alert-danger" role="alert" v-text="errors"></div>
+    </div>
     <!-- 一覧 -->
     <div v-if="isIndex">
-      <h2>登録されているお名前一覧</h2>
+      <h2>登録されているメンバー一覧</h2>
       <table class="table mx-auto">
         <thead>
           <tr>
@@ -34,12 +37,12 @@
       </table>
 
       <h2>メンバーの新規登録</h2>
-      <button class="btn btn-info" @click="toCreate()">お名前の新規登録はこちらから</button>
+      <button class="btn btn-info" @click="toCreate()">メンバーの新規登録はこちらから</button>
     </div>
 
     <div v-if="isCreate || isEdit">
       <h2 v-if="isCreate">新しいメンバーを登録</h2>
-      <h2 v-else>メンバー情報を変更</h2>
+      <h2 v-else>メンバーの情報を変更</h2>
       <div class="input-group mb-3">
         <label for="name">お名前：</label>
         <input
@@ -93,7 +96,7 @@
         />
       </div>
         <button type="button" class="btn btn-danger mr-2" @click="toIndex()">キャンセル</button>
-        <button type="button" class="btn btn-success" v-if="isCreate" @click="onSave()">お名前を保存</button>
+        <button type="button" class="btn btn-success" v-if="isCreate" @click="onSave()">メンバーを保存</button>
         <button type="button" class="btn btn-warning" v-if="isEdit" @click="onSave()">変更内容を保存</button>
       </div>
     </div>
