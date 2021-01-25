@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Member;
-use Illuminate\Http\Request;
-
+// use Illuminate\Http\Request;
+use App\Http\Requests\CreateMemberRequest;
 class MemberController extends Controller
 {
   public function index()
@@ -24,11 +24,13 @@ class MemberController extends Controller
   //   ]);
   // }
 
-  public function store(Request $request)
+  public function store(CreateMemberRequest $request)
   {
-    // バリデーションは省略してます
     $member = new Member();
     $member->name = $request->name;
+    $member->email = $request->email;
+    $member->sex = $request->sex;
+    $member->password = bcrypt($request->password);
     $result = $member->save();
 
     // return [
@@ -38,10 +40,12 @@ class MemberController extends Controller
     return ['result' => $result];
   }
 
-  public function update(Request $request, Member $member)
+  public function update(CreateMemberRequest $request, Member $member)
   {
-    // バリデーションは省略してます
     $member->name = $request->name;
+    $member->email = $request->email;
+    $member->sex = $request->sex;
+    $member->password = bcrypt($request->password);
     $result = $member->save();
 
     return ['result' => $result];
