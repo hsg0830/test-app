@@ -37,7 +37,7 @@ class CreateMemberRequest extends FormRequest
           // 「 members テーブルの email フィールドは重複しちゃダメ！ ※ただし、すでに登録してるものと同じ場合はスルーOK♪」
           Rule::unique('members', 'email')->ignore($member)
       ],
-      'sex' => 'required|integer|min:1|max:2',
+      'sex' => 'required|integer|in:1, 2',
 //      'password' => 'required|min:8',
       // 【変更】こちらのご説明は「resources/views/member/index.blade.php」116行目ににございます
       'password' => 'required|min:8|confirmed',
@@ -48,16 +48,13 @@ class CreateMemberRequest extends FormRequest
   {
     return [
       'name.required' => 'お名前を入力してください。',
-//      'name.max:20' => 'お名前は20文字以内で入力してください。',
       'name.max' => 'お名前は20文字以内で入力してください。', // 【変更】数字を省略してもOKです ^^
       'email.required'  => 'メールアドレスをしてください。',
       'email.email'  => 'メールアドレスの形式を確認してください。',
-//      'email.max:100' => 'メールアドレスは100文字以内で入力してください。',
       'email.max' => 'メールアドレスは100文字以内で入力してください。', // 【変更】数字を省略してもOKです ^^
       'email.unique' => 'このメールアドレスはすでに登録されています。', // 【追加】
       'sex.required' => '性別を選択してください。',
       'password.required' => 'パスワードを入力してください。',
-//      'password.min:6' => 'パスワードをは8文字以上で入力してください。',
       'password.min' => 'パスワードは8文字以上で入力してください。', // 【変更】数字を省略してもOKです ^^
       'password.confirmed' => 'パスワードが一致しません。', // 【追加】
     ];

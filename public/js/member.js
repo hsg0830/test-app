@@ -4,11 +4,10 @@ Vue.createApp({
             currentState: "index",
             members: [],
             currentMember: {},
-            pwConfirm: "",
+            pwConfirmation: "",
             errorStatus: 0,
             // errors: [],
             errors: {}, // 変更： エラーはオブジェクトで返ってきますのでこちらに変更しました
-            // memberName: '',
             sexes: {    // 追加： 性別をデータで管理するようにしました（ご提案）
                 1: '男',
                 2: '女'
@@ -25,8 +24,8 @@ Vue.createApp({
         isEdit() {
             return this.currentState === "edit";
         },
-        hasErrors () {
-          return this.errorStatus === 422;
+        hasErrors() {
+            return this.errorStatus === 422;
         },
         // passwordError() {
         //   if (this.errors) {
@@ -44,7 +43,7 @@ Vue.createApp({
                 .get(url)
                 .then((response) => {
                     this.members = response.data;
-                    console.log(this.members);
+                    // console.log(this.members);
                 })
                 .catch((error) => {
                     console.log(error);
@@ -52,7 +51,7 @@ Vue.createApp({
         },
         toIndex() {
             this.currentState = "index";
-            this.pwConfirm = ''; // キャンセルした場合のデータ初期化をしています
+            this.pwConfirmation = ''; // キャンセルした場合のデータ初期化をしています
         },
         toCreate() {
             this.currentState = "create";
@@ -66,7 +65,7 @@ Vue.createApp({
         },
         onSave() {
             // console.log(this.currentMember);
-            // console.log(this.pwConfirm);
+            // console.log(this.pwConfirmation);
 
             if (!this.currentMember.name) {
                 alert("お名前を入力してください。");
@@ -84,12 +83,12 @@ Vue.createApp({
                 alert("パスワードを入力してください。");
                 return;
             }
-            if (!this.pwConfirm) {
+            if (!this.pwConfirmation) {
                 alert("確認のためパスワードをもう一度入力してください。");
                 return;
             }
-            if (this.currentMember.password !== this.pwConfirm) {
-                alert("パスワードが一致しません。再度誤入力ください。");
+            if (this.currentMember.password !== this.pwConfirmation) {
+                alert("パスワードが一致しません。再度入力してください。");
                 return;
             }
 
@@ -111,11 +110,11 @@ Vue.createApp({
                     email: this.currentMember.email,
                     sex: this.currentMember.sex,
                     password: this.currentMember.password,
-                    // pwConfirm: this.pwConfirm,
+                    // pwConfirm: this.pwConfirmation,
 
                     // 【追加】バリデーション・ルール「confirmed」の仕様にそって「password_confirmation」という名前で送信します
                     // 参考記事： https://blog.capilano-fw.com/?p=341#Confirmed
-                    password_confirmation: this.pwConfirm,
+                    password_confirmation: this.pwConfirmation,
                 };
 
                 axios
