@@ -93,14 +93,14 @@
         />
       </div>
       <div class="input-group mb-3">
-        <label for="password-consirm">パスワード再入力：</label>
+        <label for="password-confirmation">パスワード再入力：</label>
         <input
-          id="password-confirm"
+          id="password-confirmation"
           type="password"
           class="form-control"
           placeholder="確認のためパスワードをもう一度入力"
-          v-model="pwConfirm"
-          aria-label="MemberPasswordConfirm"
+          v-model="pwConfirmation"
+          aria-label="MemberPasswordConfirmation"
         />
       </div>
         <button type="button" class="btn btn-danger mr-2" @click="toIndex()">キャンセル</button>
