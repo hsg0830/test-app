@@ -5,7 +5,7 @@ Vue.createApp({
             members: [],
             currentMember: {},
             pwConfirmation: "",
-            errorStatus: 0,
+            // errorStatus: 0,
             // errors: [],
             errors: {}, // 変更： エラーはオブジェクトで返ってきますのでこちらに変更しました
             sexes: {    // 追加： 性別をデータで管理するようにしました（ご提案）
@@ -24,16 +24,8 @@ Vue.createApp({
         isEdit() {
             return this.currentState === "edit";
         },
-        hasErrors() {
-            return this.errorStatus === 422;
-        },
-        // passwordError() {
-        //   if (this.errors) {
-        //     if (this.errors.password) {
-        //         return this.errors.password;
-        //       }
-        //   }
-        //   return "";
+        // hasErrors() {
+        //     return this.errorStatus === 422;
         // },
     },
     methods: {
@@ -52,6 +44,7 @@ Vue.createApp({
         toIndex() {
             this.currentState = "index";
             this.pwConfirmation = ''; // キャンセルした場合のデータ初期化をしています
+            this.errors = {};
         },
         toCreate() {
             this.currentState = "create";
@@ -64,33 +57,30 @@ Vue.createApp({
             this.currentMember.password = "";
         },
         onSave() {
-            // console.log(this.currentMember);
-            // console.log(this.pwConfirmation);
-
-            if (!this.currentMember.name) {
-                alert("お名前を入力してください。");
-                return;
-            }
-            if (!this.currentMember.email) {
-                alert("メールアドレスを入力してください。");
-                return;
-            }
-            if (!this.currentMember.sex) {
-                alert("性別を選択してください。");
-                return;
-            }
-            if (!this.currentMember.password) {
-                alert("パスワードを入力してください。");
-                return;
-            }
-            if (!this.pwConfirmation) {
-                alert("確認のためパスワードをもう一度入力してください。");
-                return;
-            }
-            if (this.currentMember.password !== this.pwConfirmation) {
-                alert("パスワードが一致しません。再度入力してください。");
-                return;
-            }
+            // if (!this.currentMember.name) {
+            //     alert("お名前を入力してください。");
+            //     return;
+            // }
+            // if (!this.currentMember.email) {
+            //     alert("メールアドレスを入力してください。");
+            //     return;
+            // }
+            // if (!this.currentMember.sex) {
+            //     alert("性別を選択してください。");
+            //     return;
+            // }
+            // if (!this.currentMember.password) {
+            //     alert("パスワードを入力してください。");
+            //     return;
+            // }
+            // if (!this.pwConfirmation) {
+            //     alert("確認のためパスワードをもう一度入力してください。");
+            //     return;
+            // }
+            // if (this.currentMember.password !== this.pwConfirmation) {
+            //     alert("パスワードが一致しません。再度入力してください。");
+            //     return;
+            // }
 
             if (confirm("保存します。よろしいですか？")) {
                 let url = "";
@@ -121,16 +111,24 @@ Vue.createApp({
                     .post(url, params)
                     .then((response) => {
                         if (response.data.result === true) {
-                            console.log(response);
                             this.getMembers();
                             this.toIndex();
                         }
                     })
                     .catch((error) => {
                         if (error.response.status === 422) {
-                            this.errorStatus = 422;
-                            this.errors = error.response.data.errors;
+                            // this.errorStatus = 422;
+                            // this.errors = error.response.data.errors;
                             // console.log(this.errors);
+
+                            const responseErrors = error.response.data.errors;
+                            let errors = {};
+
+                            for (const key in responseErrors) {
+                                errors[key] = responseErrors[key][0];
+                            }
+
+                            this.errors = errors;
                         } else {
                             console.log(error);
                         }
