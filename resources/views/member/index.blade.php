@@ -11,6 +11,7 @@
     {{-- <div v-if="hasErrors">
       <div class="alert alert-danger" role="alert" v-text="errors"></div>
     </div> --}}
+
     <!-- 一覧 -->
     <div v-if="isIndex">
       <h2>登録されているメンバー一覧</h2>
@@ -46,7 +47,8 @@
     <div v-if="isCreate || isEdit">
       <h2 v-if="isCreate">新しいメンバーを登録</h2>
       <h2 v-else>メンバーの情報を変更</h2>
-      <div class="alert alert-danger" role="alert" v-if="errors.name" v-text="errors.name"></div>
+      {{-- <div class="alert alert-danger" role="alert" v-if="errors.name" v-text="errors.name"></div> --}}
+      <v-errors :error="errors.name"></v-errors>
       <div class="input-group mb-3">
         <label for="name">お名前：</label>
         <input
@@ -59,7 +61,8 @@
         />
       </div>
 
-      <div class="alert alert-danger" role="alert" v-if="errors.email" v-text="errors.email"></div>
+      {{-- <div class="alert alert-danger" role="alert" v-if="errors.email" v-text="errors.email"></div> --}}
+      <v-errors :error="errors.email"></v-errors>
       <div class="input-group mb-3">
         <label for="email">メールアドレス：</label>
         <input
@@ -72,7 +75,8 @@
         />
       </div>
 
-      <div class="alert alert-danger" role="alert" v-if="errors.sex" v-text="errors.sex"></div>
+      {{-- <div class="alert alert-danger" role="alert" v-if="errors.sex" v-text="errors.sex"></div> --}}
+      <v-errors :error="errors.sex"></v-errors>
       <div class="input-group mb-3">
         <label for="sex">性別：</label>
         <select id="sex" class="form-select" aria-label="MemberSexuality" v-model="currentMember.sex">
@@ -87,7 +91,8 @@
         </select>
       </div>
 
-      <div class="alert alert-danger" role="alert" v-if="errors.password" v-text="errors.password"></div>
+      {{-- <div class="alert alert-danger" role="alert" v-if="errors.password" v-text="errors.password"></div> --}}
+      <v-errors :error="errors.password"></v-errors>
       <div class="input-group mb-3">
         <label for="password">パスワード：</label>
         <input
@@ -119,5 +124,7 @@
 @endsection
 
 @section('js')
+  <!--　↓　v-error.js（コンポーネントを読み込み） -->
+  <script src="{{ asset('/js/vue/components/error.js') }}"></script>
   <script src="{{ asset('/js/member.js') }}"></script>
 @endsection
