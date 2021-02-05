@@ -124,5 +124,7 @@
 @endsection
 
 @section('js')
+  <!--　↓　v-error.js（コンポーネントを読み込み） -->
+  <script src="{{ asset('/js/vue/components/error.js') }}"></script>
   <script src="{{ asset('/js/member.js') }}"></script>
 @endsection

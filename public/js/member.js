@@ -159,10 +159,5 @@ Vue.createApp({
         this.getMembers();
     },
 })
-    .component("v-errors", {
-        props: ["error"],
-        template: `
-            <div class="alert alert-danger" role="alert" v-if="error">{{ error }}</div>
-        `,
-    })
-    .mount("#app");
+.component("v-errors", errorComponent) // <- こちらを「public/js/vue/components/v-error.js」として外部化しました
+.mount("#app");
