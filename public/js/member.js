@@ -8,10 +8,11 @@ Vue.createApp({
             // errorStatus: 0,
             // errors: [],
             errors: {}, // 変更： エラーはオブジェクトで返ってきますのでこちらに変更しました
-            sexes: {    // 追加： 性別をデータで管理するようにしました（ご提案）
-                1: '男',
-                2: '女'
-            }
+            sexes: {
+                // 追加： 性別をデータで管理するようにしました（ご提案）
+                1: "男",
+                2: "女",
+            },
         };
     },
     computed: {
@@ -43,7 +44,7 @@ Vue.createApp({
         },
         toIndex() {
             this.currentState = "index";
-            this.pwConfirmation = ''; // キャンセルした場合のデータ初期化をしています
+            this.pwConfirmation = ""; // キャンセルした場合のデータ初期化をしています
             this.errors = {};
         },
         toCreate() {
@@ -127,7 +128,7 @@ Vue.createApp({
                             for (const key in responseErrors) {
                                 errors[key] = responseErrors[key][0];
                             }
-
+                            console.log(errors);
                             this.errors = errors;
                         } else {
                             console.log(error);
@@ -146,14 +147,22 @@ Vue.createApp({
             }
         },
     },
-    watch: { // 追加
-        currentState() { // ステータスが変更になったとき毎回実行される部分
+    watch: {
+        // 追加
+        currentState() {
+            // ステータスが変更になったとき毎回実行される部分
 
             this.errorStatus = 0; // エラー・ステータスを初期化します
-
-        }
+        },
     },
     mounted() {
         this.getMembers();
     },
-}).mount("#app");
+})
+    .component("v-errors", {
+        props: ["error"],
+        template: `
+            <div class="alert alert-danger" role="alert" v-if="error">{{ error }}</div>
+        `,
+    })
+    .mount("#app");
