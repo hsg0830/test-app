@@ -8,9 +8,9 @@
   <div id="app" class="container p-3">
     <h1 class="mb-4">名簿管理</h1>
 
-    <div v-if="hasErrors">
+    {{-- <div v-if="hasErrors">
       <div class="alert alert-danger" role="alert" v-text="errors"></div>
-    </div>
+    </div> --}}
     <!-- 一覧 -->
     <div v-if="isIndex">
       <h2>登録されているメンバー一覧</h2>
@@ -46,6 +46,7 @@
     <div v-if="isCreate || isEdit">
       <h2 v-if="isCreate">新しいメンバーを登録</h2>
       <h2 v-else>メンバーの情報を変更</h2>
+      <div class="alert alert-danger" role="alert" v-if="errors.name" v-text="errors.name"></div>
       <div class="input-group mb-3">
         <label for="name">お名前：</label>
         <input
@@ -57,6 +58,8 @@
           aria-label="MemberName"
         />
       </div>
+
+      <div class="alert alert-danger" role="alert" v-if="errors.email" v-text="errors.email"></div>
       <div class="input-group mb-3">
         <label for="email">メールアドレス：</label>
         <input
@@ -68,6 +71,8 @@
           aria-label="MemberEmail"
         />
       </div>
+
+      <div class="alert alert-danger" role="alert" v-if="errors.sex" v-text="errors.sex"></div>
       <div class="input-group mb-3">
         <label for="sex">性別：</label>
         <select id="sex" class="form-select" aria-label="MemberSexuality" v-model="currentMember.sex">
@@ -81,6 +86,8 @@
               :value="key"></option>
         </select>
       </div>
+
+      <div class="alert alert-danger" role="alert" v-if="errors.password" v-text="errors.password"></div>
       <div class="input-group mb-3">
         <label for="password">パスワード：</label>
         <input
