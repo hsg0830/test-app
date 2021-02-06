@@ -39,3 +39,7 @@ Route::prefix('member')->group(function () {
     Route::put('/{member}', [MemberController::class, 'update']);
     Route::delete('/{member}', [MemberController::class, 'destroy']);
 });
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
