@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\MemberController; //※追加
+use App\Http\Controllers\MultiAuthController; //※追加
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,17 @@ Route::prefix('member')->group(function () {
     Route::post('/', [MemberController::class, 'store']);
     Route::put('/{member}', [MemberController::class, 'update']);
     Route::delete('/{member}', [MemberController::class, 'destroy']);
+});
+
+Route::get('multi_login', [MultiAuthController::class, 'showLoginForm']);
+Route::post('multi_login', [MultiAuthController::class, 'login']);
+// Route::get('multi_login/logout', [MultiAuthController::class, 'logout']);
+
+// ログイン後のページ
+Route::prefix('members')->middleware('auth:members')->group(function () {
+    Route::get('dashboard', function () {
+        return 'ログイン完了';
+    });
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
