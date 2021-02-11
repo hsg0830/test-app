@@ -4,6 +4,13 @@
 </head>
 <body>
 <div id="app">
+    @auth('members')
+        「members」guard でログインに成功してる場合
+    @endauth
+
+    @guest('members')
+        「members」guard でログインに成功していない場合
+    @endguest
     <!-- コンポーネントの呼び出し -->
     <v-test></v-test>
 </div>

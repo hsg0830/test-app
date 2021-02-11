@@ -61,6 +61,7 @@ Route::prefix('test')->group(function(){
     if(app()->environment() === 'local') {
 
         Route::get('vue_component', function(){ return view('test.vue_component'); });
+        Route::get('vue_parent_child', function(){ return view('test.vue_parent_child'); });
 
     }
 
