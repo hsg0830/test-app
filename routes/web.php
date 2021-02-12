@@ -55,3 +55,14 @@ Route::prefix('members')->middleware('auth:members')->group(function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::prefix('test')->group(function(){
+
+    if(app()->environment() === 'local') {
+
+        Route::get('vue_component', function(){ return view('test.vue_component'); });
+        Route::get('vue_parent_child', function(){ return view('test.vue_parent_child'); });
+
+    }
+
+});
