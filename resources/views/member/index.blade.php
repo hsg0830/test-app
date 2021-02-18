@@ -7,11 +7,16 @@
 @section('content')
   <div id="app" class="container p-3">
     <h1 class="mb-4">名簿管理</h1>
-    
+
     @if(Auth::guard("members")->check())
       <button class="btn btn-danger" onclick="window.location='{{ url("multi_login/logout") }}'">ログアウト</button>
     @endif
 
+    <!-- こちらの省略形でもOKです ^^ -->
+    @auth('members')
+        <!-- Routeにname()をつけておくと、呼び出しやすいかもしれません -->
+        <a href="{{ route('multi_login.logout') }}" class="btn btn-danger">ログアウト</a>
+    @endauth
     {{-- <div v-if="hasErrors">
       <div class="alert alert-danger" role="alert" v-text="errors"></div>
     </div> --}}

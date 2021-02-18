@@ -33,27 +33,32 @@ Route::prefix('post')->group(function () {
 });
 
 //※追加
-Route::prefix('member')->group(function () {
+Route::prefix('member')->middleware('auth:members')->group(function () { // ミドルウェア「membersでのログインが必須」をセットしました
+
+    // この中は members としてログインしていないと表示できません
     Route::get('/', [MemberController::class, 'index']);
     Route::get('/list', [MemberController::class, 'list']);
     // Route::get('/{member}', [MemberController::class, 'show']);
     Route::post('/', [MemberController::class, 'store']);
     Route::put('/{member}', [MemberController::class, 'update']);
     Route::delete('/{member}', [MemberController::class, 'destroy']);
-});
 
+});
 Route::prefix('multi_login')->group(function() {
+
+    // この中はミドルウェアがついていないので誰でもアクセスできます
     Route::get('/', [MultiAuthController::class, 'showLoginForm']);
     Route::post('/', [MultiAuthController::class, 'login']);
-    Route::get('/logout', [MultiAuthController::class, 'logout']);
+    Route::get('/logout', [MultiAuthController::class, 'logout'])->name('multi_login.logout');
+
 });
 
 // ログイン後のページ
-// Route::prefix('members')->middleware('auth:members')->group(function () {
-//     Route::get('dashboard', function () {
-//         return 'ログイン完了';
-//     });
-// });
+ Route::prefix('members')->middleware('auth:members')->group(function () {
+     Route::get('dashboard', function () {
+         return 'ログイン完了';
+     });
+ });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
