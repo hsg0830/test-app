@@ -15,26 +15,15 @@ class MultiAuthController extends Controller
 
     public function login(Request $request)
     {
-        // dd($request);
         $credentials = $request->only(['email', 'password']);
         $guard = $request->guard;
         $remember = $request->has('remember');  // チェックボックスはチェックされないとデータは存在しないので false になります。
-        // \Debugbar::info($request);
-        // $members = Member::get();
-        // \Debugbar::info('$members=' . $members);
-        // \Debugbar::info($members[0]->name);
-        // \Debugbar::info($request->user());
 
         if (\Auth::guard($guard)->attempt($credentials, $remember)) { // attempt() 第２引数に remember をセットできます
             // return redirect($guard . '/dashboard');
-            // return view('member.index', compact('members'));
-            // return view('member.index')->with("members", $members);
-            // return view('member.index')->with("members", $members);
-            // var_dump(Auth::guard($guard)->user());
+            // return view('member.index');
             return redirect('/member'); // ミドルウェア「auth:members」が守っているページへリダイレクト
-//            return redirect('/members/dashboard');
-//            dump(Auth::guard($guard)->user()->name);
-//            return view('member.index');
+            // return redirect('/members/dashboard');
         }
 
         return back()->withErrors([
