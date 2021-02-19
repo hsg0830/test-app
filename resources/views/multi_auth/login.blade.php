@@ -28,10 +28,17 @@
 
       <div class="mb-3">
         <label for="guard" class="form-label">ユーザータイプ</label>
-        <select id="guard" name="guard">
+        <select id="guard" name="guard" class="form-control">
             <option value="members">members</option>
             <option value="users">users</option>
         </select>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">
+            <input type="checkbox" name="remember">
+            次回から省略
+        </label>
       </div>
 
       <button type="submit" class="btn btn-primary mb-3">ログイン</button>
