@@ -27,8 +27,8 @@
       </div>
 
       <div class="mb-3">
-        <label for="password" class="form-label">ユーザータイプ</label>
-        <select name="guard">
+        <label for="guard" class="form-label">ユーザータイプ</label>
+        <select id="guard" name="guard">
             <option value="members">members</option>
             <option value="users">users</option>
         </select>

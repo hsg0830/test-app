@@ -26,6 +26,7 @@ class MemberController extends Controller
 
   public function store(CreateMemberRequest $request)
   {
+    // dd($request);
     $member = new Member();
     $member->name = $request->name;
     $member->email = $request->email;
@@ -42,6 +43,10 @@ class MemberController extends Controller
 
   public function update(CreateMemberRequest $request, Member $member)
   {
+    // \Debugbar::info('$member=' . $member);
+    // \Debugbar::info('$request=' . $request);
+    // var_dump($request);
+    // dd($member);
     $member->name = $request->name;
     $member->email = $request->email;
     $member->sex = $request->sex;

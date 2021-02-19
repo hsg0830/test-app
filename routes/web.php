@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\MemberController; //※追加
 use App\Http\Controllers\MultiAuthController; //※追加
+use Laravel\Jetstream\Rules\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,28 +42,32 @@ Route::prefix('member')->group(function () {
     Route::delete('/{member}', [MemberController::class, 'destroy']);
 });
 
-Route::get('multi_login', [MultiAuthController::class, 'showLoginForm']);
-Route::post('multi_login', [MultiAuthController::class, 'login']);
-// Route::get('multi_login/logout', [MultiAuthController::class, 'logout']);
+Route::prefix('multi_login')->group(function() {
+    Route::get('/', [MultiAuthController::class, 'showLoginForm']);
+    Route::post('/', [MultiAuthController::class, 'login']);
+    Route::get('/logout', [MultiAuthController::class, 'logout']);
+});
 
 // ログイン後のページ
-Route::prefix('members')->middleware('auth:members')->group(function () {
-    Route::get('dashboard', function () {
-        return 'ログイン完了';
-    });
-});
+// Route::prefix('members')->middleware('auth:members')->group(function () {
+//     Route::get('dashboard', function () {
+//         return 'ログイン完了';
+//     });
+// });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::prefix('test')->group(function(){
+Route::prefix('test')->group(function () {
 
-    if(app()->environment() === 'local') {
+    if (app()->environment() === 'local') {
 
-        Route::get('vue_component', function(){ return view('test.vue_component'); });
-        Route::get('vue_parent_child', function(){ return view('test.vue_parent_child'); });
-
+        Route::get('vue_component', function () {
+            return view('test.vue_component');
+        });
+        Route::get('vue_parent_child', function () {
+            return view('test.vue_parent_child');
+        });
     }
-
 });

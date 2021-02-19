@@ -7,6 +7,10 @@
 @section('content')
   <div id="app" class="container p-3">
     <h1 class="mb-4">名簿管理</h1>
+    
+    @if(Auth::guard("members")->check())
+      <button class="btn btn-danger" onclick="window.location='{{ url("multi_login/logout") }}'">ログアウト</button>
+    @endif
 
     {{-- <div v-if="hasErrors">
       <div class="alert alert-danger" role="alert" v-text="errors"></div>
