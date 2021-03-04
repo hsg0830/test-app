@@ -44,7 +44,7 @@ Route::prefix('member')->middleware('auth:members')->group(function () { // ミ�
 
 Route::prefix('multi_login')->group(function () {
     // この中はミドルウェアがついていないので誰でもアクセスできます
-    Route::get('/', [MultiAuthController::class, 'showLoginForm']);
+    Route::get('/', [MultiAuthController::class, 'showLoginForm'])->name('multi_login');
     Route::post('/', [MultiAuthController::class, 'login']);
     Route::get('/logout', [MultiAuthController::class, 'logout'])->name('multi_login.logout');
 });
