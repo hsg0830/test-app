@@ -1,0 +1,48 @@
+@charset "UTF-8";
+
+/*---------------------------
+  変数
+---------------------------*/
+// 色の指定
+$orange: #ed8400;
+$red: #ab243b;
+$darkBrown: #3b2213;
+$brown: #895d3b;
+$lightBrown: #cba67e;
+// $beige: #d9cbbf;
+$beige: #d6c7ba;
+// $base: #ecebe8;
+$base: #eee5df;
+$black: #231815;
+$gray: #494949;
+$white: #ffffff;
+$pink: #f1d9e9;
+$yellow: #fffcf4;
+
+// フォント
+$krNamun: "Nanum Gothic", sans-serif;
+$krNoto: "Noto Sans KR", sans-serif;
+$krSunflower: "Sunflower", sans-serif;
+$krJua: "Jua", sans-serif;
+$krDokdo: "Dokdo", cursive;
+$krPoor: "Poor Story", cursive;
+$krSongmyong: "Song Myung", serif;
+
+//固定幅のサイズ
+$maxWidth: 1400px;
+$maxInnerWidth: 1150px;
+
+// 余白の指定
+$sideSpace: 6vw;
+
+/*---------------------------
+  ツールチップ
+---------------------------*/
+:root {
+  --microtip-transition-duration: 0.5s;
+  --microtip-transition-delay: 0.2s;
+  --microtip-transition-easing: ease-out;
+  --microtip-font-size: 1.2rem;
+  // --microtip-font-weight: bold;
+  --microtip-text-transform: uppercase;
+}
