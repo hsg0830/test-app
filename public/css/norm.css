@@ -1,0 +1,706 @@
+@charset "UTF-8";
+/*---------------------------
+  変数
+---------------------------*/
+/*---------------------------
+  ツールチップ
+---------------------------*/
+:root {
+  --microtip-transition-duration: 0.5s;
+  --microtip-transition-delay: 0.2s;
+  --microtip-transition-easing: ease-out;
+  --microtip-font-size: 1.2rem;
+  --microtip-text-transform: uppercase;
+}
+
+/*---------------------------
+  規範原文ページのメイン領域
+---------------------------*/
+.page-title {
+  width: 100%;
+  margin: 2rem auto 1.1rem;
+  padding: 0.5rem 0;
+  background-color: #ab243b;
+  -webkit-box-shadow: 0 0 0 0.4rem #ab243b;
+          box-shadow: 0 0 0 0.4rem #ab243b;
+  border: dashed 0.2rem #ffffff;
+  color: #ffffff;
+  font-family: "Sunflower", sans-serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+  letter-spacing: 0.5rem;
+  text-align: center;
+  position: relative;
+}
+
+@media screen and (min-width: 768px) {
+  .page-title {
+    margin-top: 3rem;
+    font-size: 3.5rem;
+  }
+}
+
+.page-title:after {
+  position: absolute;
+  content: "";
+  left: -0.8rem;
+  top: -0.7rem;
+  border-width: 0 0 3rem 3rem;
+  border-style: solid;
+  border-color: #eee5df #eee5df #895d3b;
+  -webkit-box-shadow: 0.2rem 0.2rem 0.2rem rgba(192, 192, 192, 0.5);
+          box-shadow: 0.2rem 0.2rem 0.2rem rgba(192, 192, 192, 0.5);
+}
+
+.all-ex-btn {
+  display: block;
+  margin-bottom: 1rem;
+  margin-left: auto;
+  background-color: #ffffff;
+  color: #ab243b;
+  border-radius: 0.3rem;
+  -webkit-box-shadow: 0.2rem 0.2rem 0.5rem 0 rgba(0, 0, 0, 0.5);
+          box-shadow: 0.2rem 0.2rem 0.5rem 0 rgba(0, 0, 0, 0.5);
+}
+
+.all-ex-btn:hover, .all-ex-btn:active {
+  background-color: #ab243b;
+  color: #ffffff;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.title {
+  margin-bottom: 2rem;
+  padding: 1rem 1.5rem;
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+.chapter {
+  margin-bottom: 1.5rem;
+}
+
+.chapter__title {
+  margin-bottom: 3rem;
+  background-color: #d6c7ba;
+  color: #494949;
+  border-bottom: solid 0.5rem #895d3b;
+}
+
+.chapter__title span {
+  color: #895d3b;
+}
+
+.term {
+  margin-bottom: 4rem;
+}
+
+@media screen and (min-width: 768px) {
+  .term {
+    margin-bottom: 5rem;
+  }
+}
+
+.term__head-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.term__title {
+  width: 95%;
+  color: #494949;
+  background: transparent;
+  border-left: solid 0.5rem #895d3b;
+}
+
+.term__title span {
+  color: #895d3b;
+}
+
+.term .ex-btn {
+  display: block;
+  width: 3rem;
+  height: 3rem;
+  background-color: rgba(137, 93, 59, 0.8);
+  color: #ffffff;
+  text-align: center;
+  line-height: 3rem;
+}
+
+.term .ex-btn:hover {
+  cursor: pointer;
+  background-color: rgba(203, 166, 126, 0.8);
+}
+
+.term__detail__title {
+  margin-bottom: 1rem;
+  padding-left: 0;
+}
+
+.term__detail__title span {
+  color: #895d3b;
+}
+
+.term__detail__case__title {
+  padding: 0;
+}
+
+.term__detail__case__title span {
+  color: #cba67e;
+}
+
+.introduction {
+  margin-bottom: 3rem;
+}
+
+@media screen and (min-width: 768px) {
+  .introduction {
+    margin-bottom: 5rem;
+  }
+}
+
+.introduction span {
+  font-family: "Song Myung", serif;
+  font-size: 1.8rem;
+}
+
+@media screen and (min-width: 768px) {
+  .introduction span {
+    font-size: 2.1rem;
+  }
+}
+
+.term__description {
+  color: #494949;
+}
+
+@media screen and (min-width: 768px) {
+  .term__description {
+    margin-left: 2rem;
+  }
+}
+
+.term__description .complement {
+  display: block;
+  margin-bottom: 0.5rem;
+  width: 5rem;
+  background-color: #cba67e;
+  border: 1px solid #895d3b;
+  color: #ffffff;
+  text-align: center;
+}
+
+.description {
+  margin-bottom: 2rem;
+}
+
+.example table {
+  width: 100%;
+  margin-bottom: 3rem;
+  background-color: #fffcf4;
+}
+
+.example table tr th,
+.example table tr td {
+  text-align: center;
+  padding: 0.6rem 1rem;
+  border: 1px solid #eee5df;
+}
+
+.example table tr th.text-left,
+.example table tr td.text-left {
+  text-align-last: left;
+}
+
+@media (max-width: 767px) {
+  .example table tr th span,
+  .example table tr td span {
+    font-size: 1.1rem;
+  }
+}
+
+/*---------------------------
+  解説一覧ページ・QAページ共通部
+---------------------------*/
+.norm-category-title {
+  margin: 1rem 0 2rem;
+  font-size: 2.5rem;
+  text-align: center;
+  color: #895d3b;
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: bold;
+}
+
+@media screen and (min-width: 768px) {
+  .norm-category-title {
+    font-size: 4rem;
+  }
+}
+
+/*---------------------------
+  解説一覧ページのメイン領域
+---------------------------*/
+.list-container {
+  width: 100%;
+}
+
+.list-container__selector ul {
+  padding: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.list-container__selector ul li {
+  width: calc(100% / 3 - 0.6rem);
+  margin: 0.3rem;
+  margin-bottom: 1.5rem;
+  padding: 0.4rem 0;
+  background-color: #d6c7ba;
+  color: #3b2213;
+  text-align: center;
+  border-radius: 0.5rem;
+}
+
+@media screen and (min-width: 768px) {
+  .list-container__selector ul li {
+    width: calc(100% / 5 - 0.6rem);
+  }
+}
+
+.list-container__selector ul li:hover {
+  background-color: rgba(171, 36, 59, 0.7);
+  color: #ffffff;
+}
+
+.list-container__selector ul li.active {
+  background-color: #ab243b;
+  color: #ffffff;
+  position: relative;
+}
+
+.list-container__selector ul li.active::after {
+  position: absolute;
+  content: "";
+  top: 100%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  border: 1rem solid transparent;
+  border-top: 1rem solid #ab243b;
+  width: 0;
+  height: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .list-container__wrapper {
+    margin-top: 1.3rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+  }
+}
+
+.list-container__wrapper .list-item {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background-color: #fffcf4;
+  -webkit-box-shadow: 0.3rem 0.3rem 0.7rem #895d3b;
+          box-shadow: 0.3rem 0.3rem 0.7rem #895d3b;
+  border-radius: 0.5rem;
+}
+
+@media screen and (min-width: 768px) {
+  .list-container__wrapper .list-item {
+    width: calc(100% / 2 - 1.5rem);
+  }
+  .list-container__wrapper .list-item:not(:last-child) {
+    margin-right: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 1100px) {
+  .list-container__wrapper .list-item {
+    width: calc(100% / 3 - 1.5rem);
+  }
+}
+
+.list-container__wrapper .list-item__header {
+  position: relative;
+}
+
+.list-container__wrapper .list-item__header .title {
+  width: 90%;
+  text-align: center;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  color: #ffffff;
+  font-family: "Poor Story", cursive;
+  font-size: 2.5rem;
+}
+
+@media screen and (min-width: 768px) {
+  .list-container__wrapper .list-item__header .title {
+    top: 10%;
+    font-size: 1.8rem;
+  }
+}
+
+.list-container__wrapper .list-item__header .title.color {
+  color: #231815;
+}
+
+.list-container__wrapper .list-item__content {
+  margin: 1rem 0 0.5rem;
+}
+
+.list-container__wrapper .list-item__content .lead {
+  padding: 0 0.3rem;
+  font-size: 1.6rem;
+  line-height: 1.5;
+}
+
+.list-container__wrapper .list-item__content .info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  font-size: 1.4rem;
+}
+
+.list-container__wrapper .list-item__content .info .date {
+  color: #494949;
+}
+
+.list-container__wrapper .list-item__content .info .category {
+  margin-left: 1rem;
+  color: #895d3b;
+}
+
+/*---------------------------
+  解説記事ページのメイン領域
+---------------------------*/
+.title-block__category {
+  color: #895d3b;
+}
+
+.title-block__title {
+  margin: 0 auto;
+  padding: 1rem 0 0.5rem;
+  color: #3b2213;
+  font-family: "Poor Story", cursive;
+  font-weight: bold;
+  font-size: 3rem;
+  text-align: center;
+  border-bottom: 3px solid #ab243b;
+}
+
+@media screen and (min-width: 768px) {
+  .title-block__title {
+    width: 80%;
+    font-size: 5rem;
+  }
+}
+
+.title-block__date {
+  margin-top: 0.5rem;
+  text-align: right;
+}
+
+.content-block {
+  width: 95%;
+  margin: 2.5rem auto 0;
+}
+
+.section-title-block {
+  margin-bottom: 3rem;
+  background-color: #f1d9e9;
+  border-radius: 0 1rem 1rem 0;
+  -webkit-box-shadow: 0.1rem 0.1rem 0.1rem silver;
+          box-shadow: 0.1rem 0.1rem 0.1rem silver;
+  color: #494949;
+  font-size: 2rem;
+  font-family: "Sunflower", sans-serif;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@media screen and (min-width: 768px) {
+  .section-title-block {
+    font-size: 3rem;
+  }
+}
+
+.section-title-block__number {
+  display: block;
+  width: 10%;
+  max-width: 5rem;
+  background-color: #ab243b;
+  color: #ffffff;
+  text-align: center;
+}
+
+.section-title-block__title {
+  padding-left: 1rem;
+}
+
+.section-content-block {
+  margin-bottom: 4rem;
+}
+
+@media screen and (min-width: 768px) {
+  .section-content-block {
+    margin-bottom: 5.5rem;
+  }
+}
+
+.section-content-block p {
+  margin-bottom: 1.5rem;
+  color: #494949;
+  font-family: "Noto Sans KR", sans-serif;
+  line-height: 1.9;
+}
+
+@media screen and (min-width: 768px) {
+  .section-content-block p {
+    margin-bottom: 2.5rem;
+    margin-left: 1.5rem;
+  }
+}
+
+.section-content-block p .emphasis {
+  font-weight: bold;
+  color: #ab243b;
+}
+
+.section-content-block p .underline {
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(50%, transparent), color-stop(50%, #fcc786));
+  background-image: linear-gradient(left, transparent 50%, #fcc786 50%);
+  background-repeat: repeat-x;
+  background-size: 200% 0.7em;
+  background-position: 0 0.5em;
+  -webkit-transition: all 3s ease;
+  transition: all 3s ease;
+}
+
+.section-content-block p .underline.isActive {
+  background-position: -100% 0.5em;
+  font-weight: bold;
+}
+
+.section-content-block .quote {
+  width: 95%;
+  margin: 3.5rem auto;
+  padding: 1rem 1rem 1rem 5rem;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background-color: #fffcf4;
+  color: #895d3b;
+  border-left: 0.7rem solid #cba67e;
+  -webkit-box-shadow: 0 0.2rem 0.4rem rgba(35, 24, 21, 0.14);
+          box-shadow: 0 0.2rem 0.4rem rgba(35, 24, 21, 0.14);
+  position: relative;
+}
+
+@media screen and (min-width: 768px) {
+  .section-content-block .quote {
+    margin: 5rem auto;
+  }
+}
+
+.section-content-block .quote p {
+  color: #895d3b;
+}
+
+.section-content-block .quote:before {
+  display: inline-block;
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  content: "\f10d";
+  font-family: FontAwesome;
+  color: #d6c7ba;
+  font-size: 2rem;
+  line-height: 1;
+  font-weight: bold;
+}
+
+/*---------------------------
+  QAページのメイン領域
+---------------------------*/
+.qa-item {
+  width: 100%;
+  border-top: 1px solid #d6c7ba;
+  padding: 1rem 0;
+}
+
+.qa-item__question {
+  margin-bottom: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.qa-item__question span,
+.qa-item__question i {
+  display: block;
+}
+
+.qa-item__question .mark_and_category {
+  margin-right: 1rem;
+  width: 20%;
+}
+
+@media screen and (min-width: 768px) {
+  .qa-item__question .mark_and_category {
+    margin-right: 2.5rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .qa-item__question .mark_and_category {
+    width: 10%;
+  }
+}
+
+.qa-item__question .mark_and_category .mark {
+  color: #ab243b;
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.qa-item__question .mark_and_category .category {
+  background-color: #cba67e;
+  color: #ffffff;
+  text-align: center;
+  border-radius: 0.5rem;
+  font-size: 1.3rem;
+}
+
+.qa-item__question .sentence {
+  width: 85%;
+  padding-top: 2rem;
+  font-size: 2rem;
+}
+
+@media screen and (min-width: 768px) {
+  .qa-item__question .sentence {
+    padding-top: 1rem;
+    font-size: 2.5rem;
+  }
+}
+
+.qa-item__question i {
+  margin-left: 1rem;
+  width: 3rem;
+  height: 3rem;
+  line-height: 3rem;
+  text-align: center;
+  background-color: #895d3b;
+  color: #ffffff;
+}
+
+.qa-item__answer {
+  margin-left: 5rem;
+  padding: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background-color: #fffcf4;
+  border-radius: 1rem;
+  position: relative;
+}
+
+@media screen and (min-width: 768px) {
+  .qa-item__answer {
+    margin-left: 8rem;
+    font-size: 2.2rem;
+  }
+}
+
+.qa-item__answer:before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f111";
+  font-weight: 900;
+  color: #fffcf4;
+  position: absolute;
+  font-size: 1rem;
+  top: -1rem;
+  left: -3rem;
+}
+
+@media screen and (min-width: 768px) {
+  .qa-item__answer:before {
+    font-size: 1.5rem;
+    left: -5rem;
+  }
+}
+
+.qa-item__answer:after {
+  font-family: "Font Awesome 5 Free";
+  content: "\f111";
+  font-weight: 900;
+  color: #fffcf4;
+  position: absolute;
+  font-size: 1.5rem;
+  top: 0.5rem;
+  left: -2rem;
+}
+
+@media screen and (min-width: 768px) {
+  .qa-item__answer:after {
+    font-size: 2.5rem;
+    left: -3rem;
+  }
+}
+
+.qa-item__answer .mark {
+  display: block;
+  width: 40%;
+  color: #ed8400;
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .qa-item__answer .mark {
+    width: 10%;
+  }
+}
+/*# sourceMappingURL=norm.css.map */

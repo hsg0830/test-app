@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\MemberController; //※追加
 use App\Http\Controllers\MultiAuthController; //※追加
+use App\Http\Controllers\ArticleController; //※追加
 use Laravel\Jetstream\Rules\Role;
 
 /*
@@ -20,6 +21,11 @@ use Laravel\Jetstream\Rules\Role;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/norms', [ArticleController::class, 'index']);
+Route::get('/norms/create', [ArticleController::class, 'create']);
+Route::post('/norms', [ArticleController::class, 'store']);
+Route::get('/norms/{article}', [ArticleController::class, 'show']);
 
 //※ルーティングの書き方変わった
 //※Route::group(['prefix' => 'user', 'namespace' => 'User', 'middleware' => 'web'], function () {。。。これとの違いは？
@@ -61,9 +67,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::prefix('test')->group(function () {
-
     if (app()->environment() === 'local') {
-
         Route::get('vue_component', function () {
             return view('test.vue_component');
         });

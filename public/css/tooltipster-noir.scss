@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+@import "variables";
+
+.tooltipster-noir {
+  margin-left: 1rem;
+  width: 70%;
+
+  @media screen and (min-width: 768px) {
+    width: 50%;
+  }
+
+  border-radius: 0.5rem;
+  border: 2px solid $brown;
+  background-color: $yellow;
+  color: $brown;
+}
+
+.tooltipster-noir .tooltipster-content {
+  font-family: $krNoto;
+  font-size: 1.3rem;
+  line-height: 1.7;
+  padding: 0.3rem 0.6rem;
+
+  @media screen and (min-width: 768px) {
+    font-size: 1.5rem;
+  }
+}

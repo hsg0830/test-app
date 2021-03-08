@@ -18,5 +18,7 @@ class DatabaseSeeder extends Seeder
         //※追加後に：php artisan migrate:fresh --seed
         $this->call(PostsTableSeeder::class);
         $this->call(MembersTableSeeder::class);
+        $this->call(CategorySeeder::class);
+        $this->call(ArticleSeeder::class);
     }
 }

@@ -11,12 +11,15 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        require('postcss-import'),
-        require('tailwindcss'),
-        require('autoprefixer'),
-    ]);
+mix.js("resources/js/app.js", "public/js")
+    .postCss("resources/css/app.css", "public/css", [
+        require("postcss-import"),
+        require("tailwindcss"),
+        require("autoprefixer"),
+    ])
+    .sass("resources/sass/common.scss", "public/css");
+    // .sass("resources/sass/norm.scss", "public/css")
+    // .sass("resources/sass/tooltipster-noir.scss", "public/css");
 
 if (mix.inProduction()) {
     mix.version();
