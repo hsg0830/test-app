@@ -21,7 +21,7 @@
         </ul>
       </div>
       <ul class="list-group">
-        <li class="list-group-item" v-for="item in items.data">【@{{item.category_id}}】@{{ item.title }}</li>
+        <li class="list-group-item" v-for="item in items.data">【@{{ categories[item.category_id] }}】@{{ item.title }}</li>
       </ul>
       {{-- <div id="tabs-content-a" class="list-container__wrapper">
         <div class="list-item">
@@ -141,6 +141,7 @@
           page: 1,
           categoryNo: 0,
           items: [],
+          categories: {},
         }
       },
       components: {
@@ -149,7 +150,6 @@
       methods: {
         getItems() {
           const url = '/articles/pagination';
-
           axios.get(url, {
             params: {
               page: this.page,
@@ -157,12 +157,18 @@
             }
           })
             .then((response) => {
-              this.items = response.data;
+              this.items = response.data[0];
+
+              //カテゴリー名のオブジェクトを作成
+              for (let i = 0; i < response.data[1].length; i++) {
+                this.categories[i+1] = response.data[1][i].name;
+              }
+              console.log(this.categories);
             });
         },
         movePage(page) {
-          this.page = page; // ページ番号を更新
-          this.getItems(); // Ajaxで新データを取得
+          this.page = page;
+          this.getItems();
         },
         selectCategory(categoryNo) {
           this.categoryNo = categoryNo;

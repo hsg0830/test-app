@@ -14,11 +14,15 @@ class ArticleController extends Controller
 
     public function paginate(Request $request) {
 
+      $categories = Category::all();
+
       if ($request->categoryNo == 0) {
-        return Article::paginate(6);
+        $articles = Article::paginate(6);
       } else {
-        return Article::where('category_id', $request->categoryNo)->paginate(6);
+        $articles = Article::where('category_id', $request->categoryNo)->paginate(6);
       }
+
+      return [$articles, $categories];
     }
 
     public function create() {
