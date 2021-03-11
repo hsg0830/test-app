@@ -20,107 +20,29 @@
           <li id="tabs-menu-4" class="category-tabs" @click="selectCategory(4)">기타</li>
         </ul>
       </div>
-      <ul class="list-group">
+      {{-- <ul class="list-group"> --}}
         {{-- <li class="list-group-item" v-for="item in items.data">【@{{ categories[item.category_id] }}】@{{ item.title }}</li> --}}
-        <li class="list-group-item" v-for="item in items.data">【@{{ item.category.name }}】@{{ item.title }}</li>
-      </ul>
-      {{-- <div id="tabs-content-a" class="list-container__wrapper">
-        <div class="list-item">
+        {{-- <li class="list-group-item" v-for="item in items.data">【@{{ item.category.name }}】@{{ item.title }}</li> --}}
+      {{-- </ul> --}}
+      <div class="list-container__wrapper">
+        <div class="list-item" v-for="item in items.data">
           <a href="show.html">
             <div class="list-item__header">
               <img src="../../img/bg_memo_thum.png" alt="" />
-              <p class="title color">맞춤법이란 무엇인가?</p>
+              <p class="title color">@{{ item.title }}</p>
             </div>
             <div class="list-item__content">
               <p class="lead">
-                조선말의 맞춤법에 대하여 알기 전에 맞춤법이란 무엇인가를
-                확인해보자. 세계에는 수많은 문자(文字)가 존재한다. 우리
-                생활에 가까운 문자만 ...
+                @{{ item.description }}
               </p>
               <div class="info">
-                <p class="date">2021-02-04</p>
-                <p class="category">맞춤법</p>
+                <p class="date">@{{ item.created_at | date }}</p>
+                <p class="category">@{{ item.category.name }}</p>
               </div>
             </div>
           </a>
         </div>
-        <div class="list-item">
-          <a href="show.html">
-            <div class="list-item__header">
-              <img src="../../img/bg_memo_thum.png" alt="" />
-              <p class="title color">맞춤법이란 무엇인가?</p>
-            </div>
-            <div class="list-item__content">
-              <p class="lead">
-                조선말의 맞춤법에 대하여 알기 전에 맞춤법이란 무엇인가를
-                확인해보자. 세계에는 수많은 문자(文字)가 존재한다. 우리
-                생활에 가까운 문자만 ...
-              </p>
-              <div class="info">
-                <p class="date">2021-02-04</p>
-                <p class="category">맞춤법</p>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="list-item">
-          <a href="show.html">
-            <div class="list-item__header">
-              <img src="../../img/bg_memo_thum.png" alt="" />
-              <p class="title color">맞춤법이란 무엇인가?</p>
-            </div>
-            <div class="list-item__content">
-              <p class="lead">
-                조선말의 맞춤법에 대하여 알기 전에 맞춤법이란 무엇인가를
-                확인해보자. 세계에는 수많은 문자(文字)가 존재한다. 우리
-                생활에 가까운 문자만 ...
-              </p>
-              <div class="info">
-                <p class="date">2021-02-04</p>
-                <p class="category">맞춤법</p>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="list-item">
-          <a href="show.html">
-            <div class="list-item__header">
-              <img src="../../img/bg_memo_thum.png" alt="" />
-              <p class="title color">맞춤법이란 무엇인가?</p>
-            </div>
-            <div class="list-item__content">
-              <p class="lead">
-                조선말의 맞춤법에 대하여 알기 전에 맞춤법이란 무엇인가를
-                확인해보자. 세계에는 수많은 문자(文字)가 존재한다. 우리
-                생활에 가까운 문자만 ...
-              </p>
-              <div class="info">
-                <p class="date">2021-02-04</p>
-                <p class="category">맞춤법</p>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="list-item">
-          <a href="show.html">
-            <div class="list-item__header">
-              <img src="../../img/bg_memo_thum.png" alt="" />
-              <p class="title color">맞춤법이란 무엇인가?</p>
-            </div>
-            <div class="list-item__content">
-              <p class="lead">
-                조선말의 맞춤법에 대하여 알기 전에 맞춤법이란 무엇인가를
-                확인해보자. 세계에는 수많은 문자(文字)가 존재한다. 우리
-                생활에 가까운 문자만 ...
-              </p>
-              <div class="info">
-                <p class="date">2021-02-04</p>
-                <p class="category">맞춤법</p>
-              </div>
-            </div>
-          </a>
-        </div>
-      </div> --}}
+      </div>
     </div>
 
     <v-pagination :data="items" @move-page="movePage($event)"></v-pagination>
