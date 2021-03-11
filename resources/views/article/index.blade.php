@@ -163,7 +163,7 @@
               for (let i = 0; i < response.data[1].length; i++) {
                 this.categories[i+1] = response.data[1][i].name;
               }
-              console.log(this.categories);
+              // console.log(this.categories);
             });
         },
         movePage(page) {
@@ -172,6 +172,7 @@
         },
         selectCategory(categoryNo) {
           this.categoryNo = categoryNo;
+          this.page = 1;
           const tabs = document.querySelectorAll('.category-tabs');
           tabs.forEach(tab => {
             tab.classList.remove('active');
