@@ -14,17 +14,32 @@ class ArticleController extends Controller
 
     public function paginate(Request $request) {
 
-      // $categories = Category::all();
+        // パターン１：when()を使う
 
-      if ($request->categoryNo == 0) {
-        // $articles = Article::paginate(6);
-        return Article::with('category')->paginate(6);
-      } else {
-        // $articles = Article::where('category_id', $request->categoryNo)->paginate(6);
-        return Article::where('category_id', $request->categoryNo)->with('category')->paginate(6);
-      }
+//        return Article::with('category')
+//            ->when($request->categoryNo, function($query, $category_id){
+//
+//                $query->where('category_id', $category_id);
+//
+//            })
+//            ->paginate(6);
 
-      // return [$articles, $categories];
+
+        // パターン２：query() を使う
+
+        $query = Article::query();
+        $category_id = intval($request->categoryNo);
+
+        if($category_id > 0) {
+
+            $query->where('category_id', $category_id);
+
+        }
+
+        return $query
+            ->with('category')
+            ->paginate(6);
+
     }
 
     public function create() {
