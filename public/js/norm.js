@@ -78,7 +78,6 @@ const showTab = (selector) => {
 
 $(".list-container__selector li").on('click', (e) => {
   const selector = $(e.target).attr("id");
-  console.log(selector);
   showTab(selector);
 });
 

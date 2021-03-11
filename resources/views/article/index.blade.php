@@ -21,7 +21,8 @@
         </ul>
       </div>
       <ul class="list-group">
-        <li class="list-group-item" v-for="item in items.data">【@{{ categories[item.category_id] }}】@{{ item.title }}</li>
+        {{-- <li class="list-group-item" v-for="item in items.data">【@{{ categories[item.category_id] }}】@{{ item.title }}</li> --}}
+        <li class="list-group-item" v-for="item in items.data">【@{{ item.category.name }}】@{{ item.title }}</li>
       </ul>
       {{-- <div id="tabs-content-a" class="list-container__wrapper">
         <div class="list-item">
@@ -141,7 +142,7 @@
           page: 1,
           categoryNo: 0,
           items: [],
-          categories: {},
+          // categories: {},
         }
       },
       components: {
@@ -157,12 +158,13 @@
             }
           })
             .then((response) => {
-              this.items = response.data[0];
+              // this.items = response.data[0];
+              this.items = response.data;
 
               //カテゴリー名のオブジェクトを作成
-              for (let i = 0; i < response.data[1].length; i++) {
-                this.categories[i+1] = response.data[1][i].name;
-              }
+              // for (let i = 0; i < response.data[1].length; i++) {
+              //   this.categories[i+1] = response.data[1][i].name;
+              // }
               // console.log(this.categories);
             });
         },
