@@ -12,6 +12,15 @@ class ArticleController extends Controller
         return view('article.index');
     }
 
+    public function paginate(Request $request) {
+
+      if ($request->categoryNo == 0) {
+        return Article::paginate(6);
+      } else {
+        return Article::where('category_id', $request->categoryNo)->paginate(6);
+      }
+    }
+
     public function create() {
         return view('article.create');
     }
