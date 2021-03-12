@@ -51,7 +51,7 @@
 @endsection
 
 @section('js')
-  <script src="{{ asset('js/vue/components/paginationComponent.js') }}"></script>
+  <script src="{{ asset('js/vue-components/paginationComponent.js') }}"></script>
   <script src="https://unpkg.com/vue@3.0.2/dist/vue.global.prod.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
   <!-- 規範関連ページ用 -->
