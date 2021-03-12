@@ -21,23 +21,23 @@
         </ul>
       </div>
       {{-- <ul class="list-group"> --}}
-        {{-- <li class="list-group-item" v-for="item in items.data">【@{{ categories[item.category_id] }}】@{{ item.title }}</li> --}}
-        {{-- <li class="list-group-item" v-for="item in items.data">【@{{ item.category.name }}】@{{ item.title }}</li> --}}
+      {{-- <li class="list-group-item" v-for="item in items.data">【@{{ categories[item.category_id] }}】@{{ item.title }}</li> --}}
+      {{-- <li class="list-group-item" v-for="item in items.data">【@{{ item.category.name }}】@{{ item.title }}</li> --}}
       {{-- </ul> --}}
       <div class="list-container__wrapper">
         <div class="list-item" v-for="item in items.data">
           <a href="show.html">
             <div class="list-item__header">
               <img src="../../img/bg_memo_thum.png" alt="" />
-              <p class="title color">@{{ item.title }}</p>
+              <p class="title color">@{{ item . title }}</p>
             </div>
             <div class="list-item__content">
               <p class="lead">
-                @{{ item.description }}
+                @{{ item . description }}
               </p>
               <div class="info">
-                <p class="date">@{{ item.created_at | date }}</p>
-                <p class="category">@{{ item.category.name }}</p>
+                <p class="date">@{{ (item . created_at) | date }}</p>
+                <p class="category">@{{ item . category . name }}</p>
               </div>
             </div>
           </a>
@@ -64,7 +64,6 @@
           page: 1,
           categoryNo: 0,
           items: [],
-          // categories: {},
         }
       },
       components: {
@@ -74,40 +73,52 @@
         getItems() {
           const url = '/articles/pagination';
           axios.get(url, {
-            params: {
-              page: this.page,
-              categoryNo: this.categoryNo,
-            }
-          })
+              params: {
+                page: this.page,
+                categoryNo: this.categoryNo,
+              }
+            })
             .then((response) => {
-              // this.items = response.data[0];
               this.items = response.data;
-
-              //カテゴリー名のオブジェクトを作成
-              // for (let i = 0; i < response.data[1].length; i++) {
-              //   this.categories[i+1] = response.data[1][i].name;
-              // }
-              // console.log(this.categories);
             });
         },
         movePage(page) {
           this.page = page;
+          location.hash = this.page;
+          // location.hash = `${this.page}-${this.categoryNo}`;
           this.getItems();
         },
         selectCategory(categoryNo) {
           this.categoryNo = categoryNo;
-          this.page = 1;
+
+          if (this.categoryNo === 0) {
+            this.page = parseInt(location.hash.substring(1));
+            // location.hash = `${this.categoryNo}-0`;
+          } else {
+            this.page = 1,
+            location.hash = this.page;
+            // location.hash = `${this.page}-${this.categoryNo}`;
+          }
+
           const tabs = document.querySelectorAll('.category-tabs');
           tabs.forEach(tab => {
             tab.classList.remove('active');
-          })
+          });
+
           const selectedTab = document.querySelector(`#tabs-menu-${this.categoryNo}`);
           selectedTab.classList.add('active');
+
           this.getItems();
         }
       },
       mounted() {
-        this.selectCategory(0);
+        console.log('It was called!');
+        // if (location.hash.substring(1).slice(-1) !== 0) {
+        //   this.categoryNo = location.hash.substring(1).slice(-1);
+        // } else {
+        //   this.categoryNo = 0;
+        // }
+        this.selectCategory(this.categoryNo);
       }
     });
 
@@ -115,5 +126,3 @@
 
   </script>
 @endsection
-
-
