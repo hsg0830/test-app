@@ -1,31 +1,21 @@
 const categorySelectButton = {
   template: `
-    <div class="button-wrapper m-3 d-flex">
-      <button
-        class="btn btn-primary d-block m-2"
-        :class="getClasses(0)"
-        @click="getCategoryNo(0)">すべて
-      </button>
-      <button
-        v-for="category in categories"
-        class="btn btn-primary d-block m-2"
-        :class="getClasses(category.id)"
-        @click="getCategoryNo(category.id)">
-        {{ category.name }}
-      </button>
-    </div>
+  <ul>
+    <li id="tabs-menu-0" :class="getClasses(0)" class="category-tabs" @click="getCategoryNo(0)">전체</li>
+    <li v-for="category in categories" :id="getId(category.id)" :class="getClasses(category.id)" class="category-tabs" @click="getCategoryNo(category.id)">{{category.name}}</li>
+  </ul>
   `,
   props: ['modelValue', 'categories'],
   methods: {
-    getCategoryNo(category) {
-      const categoryNo = Number.parseInt(category);
-      // this.$emit('child-click', categoryNo);
-      this.$emit('update:modelValue', categoryNo); // ここで v-model（=modelValue）の更新を親へ通知（changeCategoryを省略できます）
+    getCategoryNo(index) {
+      const selectedCategoryNo = Number.parseInt(index);
+      this.$emit('child-click', selectedCategoryNo);
     },
-    // おまけ： クリックされたボタンを色を変更しています
+    getId(index) {
+      return `tabs-menu-${index}`;
+    },
     getClasses(index) {
-      return parseInt(this.modelValue) === parseInt(index) ? 'btn-info' : 'btn-primary';
-    }
+      return parseInt(this.modelValue) === parseInt(index) ? 'active' : '';
+    },
   },
-  emits: ['update:modelValue'] // ← Warning が出る場合があるのでつけてますがなくても動きます
 };

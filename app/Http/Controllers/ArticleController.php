@@ -36,10 +36,13 @@ class ArticleController extends Controller
 
         }
 
-        return $query
-            ->with('category')
-            ->paginate(6);
+        // return $query
+        //     ->with('category')
+        //     ->paginate(6);
+        $articles = $query->with('category')->paginate(6);
+        $categories = Category::all();
 
+        return [$articles, $categories];
     }
 
     public function create() {
