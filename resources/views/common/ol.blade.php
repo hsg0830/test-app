@@ -27,6 +27,7 @@
   <script src="https://kit.fontawesome.com/a57480febd.js" crossorigin="anonymous"></script>
 
   <link rel="stylesheet" href="{{ asset('css/destyle.css') }}" />
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="{{ asset('css/common.css') }}" />
   @yield('css')
 </head>

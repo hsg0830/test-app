@@ -12,6 +12,21 @@ class ArticleController extends Controller
         return view('article.index');
     }
 
+    public function paginate(Request $request) {
+
+      // $categories = Category::all();
+
+      if ($request->categoryNo == 0) {
+        // $articles = Article::paginate(6);
+        return Article::with('category')->paginate(6);
+      } else {
+        // $articles = Article::where('category_id', $request->categoryNo)->paginate(6);
+        return Article::where('category_id', $request->categoryNo)->with('category')->paginate(6);
+      }
+
+      // return [$articles, $categories];
+    }
+
     public function create() {
         return view('article.create');
     }

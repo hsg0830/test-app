@@ -5,6 +5,8 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\MemberController; //※追加
 use App\Http\Controllers\MultiAuthController; //※追加
 use App\Http\Controllers\ArticleController; //※追加
+use App\Http\Controllers\PaginationController; //※追加
+use App\Http\Controllers\Ajax\AjaxPaginationController; //※追加
 use Laravel\Jetstream\Rules\Role;
 
 /*
@@ -22,10 +24,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/norms', [ArticleController::class, 'index']);
-Route::get('/norms/create', [ArticleController::class, 'create']);
-Route::post('/norms', [ArticleController::class, 'store']);
-Route::get('/norms/{article}', [ArticleController::class, 'show']);
+//ページリンクテスト用
+Route::get('pagination', [PaginationController::class, 'index']); // メイン
+Route::get('ajax/pagination', [AjaxPaginationController::class, 'index']); // Ajax
+
+Route::get('/articles', [ArticleController::class, 'index']);
+Route::get('/articles/pagination', [ArticleController::class, 'paginate']);
+Route::get('/articles/create', [ArticleController::class, 'create']);
+Route::post('/articles', [ArticleController::class, 'store']);
+Route::get('/articles/{article}', [ArticleController::class, 'show']);
 
 //※ルーティングの書き方変わった
 //※Route::group(['prefix' => 'user', 'namespace' => 'User', 'middleware' => 'web'], function () {。。。これとの違いは？

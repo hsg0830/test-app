@@ -46,4 +46,9 @@
   @livewireScripts
 </body>
 
+@env('local')
+
+@include('test.route_list')
+
+@endenv
 </html>
