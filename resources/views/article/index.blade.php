@@ -89,7 +89,6 @@
           this.getItems();
         },
         getHashValue() {
-          const hash = location.hash;
           const hashPage = parseInt(location.hash.substring(1));
           const hashCategoryNo = parseInt(location.hash.substring(1).slice(-1));
 
