@@ -84,21 +84,37 @@
         },
         movePage(page) {
           this.page = page;
-          location.hash = this.page;
-          // location.hash = `${this.page}-${this.categoryNo}`;
+          // location.hash = this.page;
+          location.hash = `${this.page}%${this.categoryNo}`;
           this.getItems();
+        },
+        getHashValue() {
+          const hash = location.hash;
+          const hashPage = parseInt(location.hash.substring(1));
+          const hashCategoryNo = parseInt(location.hash.substring(1).slice(-1));
+
+          if (hashPage > 0) {
+            this.page = hashPage;
+          } else {
+            this.page = 1;
+          }
+
+          if (hashCategoryNo > 0) {
+            this.categoryNo = hashCategoryNo;
+          } else {
+            this.categoryNo = 0;
+          }
+          // console.log(this.page, this.categoryNo);
         },
         selectCategory(categoryNo) {
           this.categoryNo = categoryNo;
+          const hashCategoryNo = parseInt(location.hash.substring(1).slice(-1));
 
-          if (this.categoryNo === 0) {
-            this.page = parseInt(location.hash.substring(1));
-            // location.hash = `${this.categoryNo}-0`;
-          } else {
-            this.page = 1,
-            location.hash = this.page;
-            // location.hash = `${this.page}-${this.categoryNo}`;
+          if (this.categoryNo !== hashCategoryNo) {
+            this.page = 1;
           }
+
+          location.hash = `${this.page}%${this.categoryNo}`;
 
           const tabs = document.querySelectorAll('.category-tabs');
           tabs.forEach(tab => {
@@ -112,12 +128,8 @@
         }
       },
       mounted() {
-        console.log('It was called!');
-        // if (location.hash.substring(1).slice(-1) !== 0) {
-        //   this.categoryNo = location.hash.substring(1).slice(-1);
-        // } else {
-        //   this.categoryNo = 0;
-        // }
+        // console.log('It was called!');
+        this.getHashValue();
         this.selectCategory(this.categoryNo);
       }
     });
