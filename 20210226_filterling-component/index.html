@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>サンプル</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body class="chapter-3">
+    <main id="app">
+      <!-- <category-select-button
+        :categories="categories"
+        @child-click="changeCategory">
+      </category-select-button> -->
+      <category-select-button
+        :categories="categories"
+        v-model="selectedCategory">
+      </category-select-button>
+      <articles-list
+        :categories="categories"
+        :articles="articles"
+        :selected-category="selectedCategory">
+      </articles-list>
+    </main>
+    <!-- <script src="https://jp.vuejs.org/js/vue.js"></script> -->
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="./components/CategoryButton.js"></script>
+    <script src="./components/ArticlesList.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

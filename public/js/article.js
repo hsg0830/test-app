@@ -77,7 +77,7 @@ const app = Vue.createApp({
     },
     onSave() {
       if (confirm('保存します。よろしいですか？')) {
-        const url = '/norms';
+        const url = '/articles';
         const method = 'POST';
 
         const params = {
