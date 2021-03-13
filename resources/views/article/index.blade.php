@@ -82,12 +82,10 @@
             .then((response) => {
               this.items = response.data[0];
               this.categories = response.data[1];
-              console.log(this.categories);
             });
         },
         movePage(page) {
           this.page = page;
-          // location.hash = this.page;
           location.hash = `${this.page}%${this.categoryNo}`;
           this.getItems();
         },
@@ -106,7 +104,6 @@
           } else {
             this.categoryNo = 0;
           }
-          // console.log(this.page, this.categoryNo);
         },
         selectCategory(categoryNo) {
           this.categoryNo = categoryNo;
@@ -130,7 +127,6 @@
         }
       },
       mounted() {
-        // console.log('It was called!');
         this.getHashValue();
         this.selectCategory(this.categoryNo);
       }

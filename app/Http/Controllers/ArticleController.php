@@ -8,63 +8,63 @@ use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
-    public function index() {
-        return view('article.index');
+  public function index()
+  {
+    return view('article.index');
+  }
+
+  public function paginate(Request $request)
+  {
+
+    // パターン１：when()を使う
+
+    // return Article::with('category')
+    //   ->when($request->categoryNo, function($query, $category_id){
+    //     $query->where('category_id', $category_id);
+    //   })
+    //   ->paginate(6);
+
+    // パターン２：query() を使う
+
+    $query = Article::query();
+    $category_id = intval($request->categoryNo);
+
+    if ($category_id > 0) {
+
+      $query->where('category_id', $category_id);
     }
 
-    public function paginate(Request $request) {
+    // return $query
+    //     ->with('category')
+    //     ->paginate(6);
+    $articles = $query->with('category')->paginate(6);
+    $categories = Category::all();
 
-        // パターン１：when()を使う
+    return [$articles, $categories];
+  }
 
-//        return Article::with('category')
-//            ->when($request->categoryNo, function($query, $category_id){
-//
-//                $query->where('category_id', $category_id);
-//
-//            })
-//            ->paginate(6);
+  public function create()
+  {
+    return view('article.create');
+  }
 
+  public function show(Article $article)
+  {
 
-        // パターン２：query() を使う
+    return view('article.show')->with([
+      'article' => $article
+    ]);
+  }
 
-        $query = Article::query();
-        $category_id = intval($request->categoryNo);
+  public function store(Request $request)
+  {
+    // バリデーションは省略してます
+    $article = new Article();
+    $article->title = $request->title;
+    $article->description = $request->description;
+    $article->category_id = $request->category;
+    $result = $article->save();
 
-        if($category_id > 0) {
-
-            $query->where('category_id', $category_id);
-
-        }
-
-        // return $query
-        //     ->with('category')
-        //     ->paginate(6);
-        $articles = $query->with('category')->paginate(6);
-        $categories = Category::all();
-
-        return [$articles, $categories];
-    }
-
-    public function create() {
-        return view('article.create');
-    }
-
-    public function show(Article $article) {
-
-        return view('article.show')->with([
-            'article' => $article
-        ]);
-    }
-
-    public function store(Request $request)
-    {
-        // バリデーションは省略してます
-        $article = new Article();
-        $article->title = $request->title;
-        $article->description = $request->description;
-        $article->category_id = $request->category;
-        $result = $article->save();
-
-        return ['result' => $result];
-    }
+    return ['result' => $result];
+  }
 }
