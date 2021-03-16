@@ -207,8 +207,9 @@
         },
         onUpload() {
           if (confirm('保存します。よろしいですか？')) {
+            const mediaType = parseInt(this.uploadType);
             let formData = new FormData();
-            formData.append('type', this.types[this.uploadType]);
+            formData.append('type', this.types[mediaType]);
             formData.append('memo', this.memo);
             formData.append('media', this.uplodedFile);
             // for (item of formData) {
@@ -222,13 +223,13 @@
                   this.memo = '';
                   // this.$refs['media'].value = '';
                   this.previewImage = '';
+                  this.getList();
                 }
               })
               .catch(error => {
                 console.log(error);
               });
           }
-          this.getList(); //ここじゃないっぽい。。。
         },
       },
       mounted() {
