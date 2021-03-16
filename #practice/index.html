@@ -1,100 +1,31 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <title>File API 1</title>
-    <script src="file1.js"></script>
-    <!-- <link href="style.css" rel="stylesheet" /> -->
-    <style>
-      @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
-      @import url('https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap');
-
-      html {
-        font-family: 'Roboto', sans-serif;
-      }
-
-      pre {
-        font-family: 'Roboto mono', monospace;
-        font-size: 0.9rem;
-        background-color: #d6eaf8;
-        padding: 10px;
-      }
-    </style>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
   </head>
   <body>
-    <input type="file" id="file1" />
-    <pre id="pre1"></pre>
-
+    <div id="app">
+      <input type="file" ref="inputForm" @change="test" />
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
     <script>
-      // window.addEventListener('load', () => {
-      //   const f = document.getElementById('file1');
-      //   f.addEventListener('change', (evt) => {
-      //     let input = evt.target;
-      //     if (input.files.length == 0) {
-      //       console.log('No file selected');
-      //       return;
-      //     }
-      //     const file = input.files[0];
-      //     const reader = new FileReader();
-      //     reader.onload = () => {
-      //       const pre = document.getElementById('pre1');
-      //       pre.innerHTML = reader.result;
-      //     };
-
-      //     reader.readAsText(file);
-      //   });
-      // });
-
-      const readAsTextReader = (file) => {
-        const reader = new FileReader();
-
-        return new Promise((resolve, reject) => {
-          reader.onloadstart = (ev) => {
-            console.log(`onloadstart: total=${ev.loaded}/${ev.loaded}`);
-          };
-
-          reader.onloadend = (ev) => {
-            console.log(`onloadend: total=${ev.loaded}/${ev.loaded}`);
-          };
-
-          reader.onprogress = (ev) => {
-            console.log(`onprogress: total=${ev.loaded}/${ev.loaded}`);
-          };
-
-          reader.onerror = () => {
-            reader.abort();
-            reject('Unknown error occurred during reading the file');
-          };
-
-          reader.onload = () => {
-            console.log('onload');
-            resolve(reader.result);
-          };
-
-          reader.readAsText(file);
-        });
-      };
-
-      window.addEventListener('load', () => {
-        const f = document.getElementById('file1');
-        f.addEventListener('change', (evt) => {
-          const input = evt.target;
-          if (input.files.length == 0) {
-            return;
-          }
-          const file = input.files[0];
-          console.log(file);
-
-          readAsTextReader(file)
-            .then((value) => {
-              const pre = document.getElementById('pre1');
-              pre.innerHTML = value;
-            })
-            .catch((reason) => {
-              alert(reason);
-            });
-        });
+      const app = Vue.createApp({
+        data() {
+          return {};
+        },
+        computed: {},
+        methods: {
+          test(e) {
+            // e.preventDefault();
+            console.log(this.$refs.inputForm.files[0].name);
+          },
+        },
       });
+
+      app.mount('#app');
     </script>
   </body>
 </html>

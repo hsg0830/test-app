@@ -50,7 +50,7 @@
     <div class="m-3 p-5 border">
       <div class="mb-3">
         <label for="type" class="form-label">ファイルの種類</label>
-        <select id="type" class="form-select" v-model="uploadType">
+        <select id="type" class="form-select" v-model="uploadType" @change="clearPreview">
           <option v-for="(value, key) in types" v-text="value" :value="key"></option>
         </select>
       </div>
@@ -58,7 +58,7 @@
       <div v-if="parseInt(uploadType) === 1">
         <div class="mb-3">
           <label for="image" class="form-label">画像ファイルを選択してください</label>
-          <input class="form-control" type="file" id="image" @change="onFileChange">
+          <input class="form-control" type="file" id="image" ref="image" @change="onFileChange">
         </div>
 
         <div class="mb-3">
@@ -75,12 +75,16 @@
         viedo upload用（途中）
         <div class="mb-3">
           <label for="video" class="form-label">動画ファイルを選択してください</label>
-          <input class="form-control" type="file" id="video" @change="onFileChange">
+          <input class="form-control" type="file" id="video" ref="video" @change="onFileChange">
         </div>
 
         <div class="mb-3">
           <label for="poster" class="form-label">サムネイル用の画像ファイルを選択してください</label>
-          <input class="form-control" type="file" id="poster" ref="poster">
+          <input class="form-control" type="file" id="poster" ref="poster" @change="onPosterChange">
+        </div>
+
+        <div class="mb-3">
+          <img v-show="previewImage" :src="previewImage" alt="" />
         </div>
 
         <div class="mb-3">
@@ -145,16 +149,17 @@
             1: 'image',
             2: 'video'
           },
-          uplodedFile: {},
-          memo: '',
           uploadType: 1,
-          currentType: 1,
+          uplodedFile: {},
+          posterImg: '',
           previewImage: '',
+          memo: '',
+          currentType: 1,
         };
       },
       computed: {
         filterdList() {
-          return this.medias.filter((item) => item.type === this.types[this.currentType]);
+          return this.medias.filter((item) => item.type === this.types[parseInt(this.currentType)]);
         }
       },
       methods: {
@@ -192,10 +197,18 @@
         },
         onFileChange(e) {
           const file = e.target.files[0] || e.dataTransfer.files[0];
-          if (this.uploadType === 1) {
+          if (parseInt(this.uploadType) === 1) {
             this.createImage(file);
+            this.posterImg = '';
           }
           this.uplodedFile = file;
+          // console.log(this.uplodedFile);
+        },
+        onPosterChange(e) {
+          const file = e.target.files[0];
+          this.posterImg = file;
+          this.createImage(file);
+          // console.log(this.posterImg);
         },
         //imageの場合のプレビュー表示
         createImage(file) {
@@ -205,12 +218,15 @@
           };
           reader.readAsDataURL(file);
         },
+        clearPreview() {
+          this.previewImage = '';
+        },
         onUpload() {
           if (confirm('保存します。よろしいですか？')) {
-            const mediaType = parseInt(this.uploadType);
             let formData = new FormData();
-            formData.append('type', this.types[mediaType]);
+            formData.append('type', this.types[parseInt(this.uploadType)]);
             formData.append('memo', this.memo);
+            // formData.append('poster', this.posterImg); //まだLaravel側未実装
             formData.append('media', this.uplodedFile);
             // for (item of formData) {
             //   console.log(item);
@@ -221,7 +237,7 @@
                   alert('アップロード成功！');
                   this.uploadType = 1;
                   this.memo = '';
-                  // this.$refs['media'].value = '';
+                  this.$refs['image'].value = '';
                   this.previewImage = '';
                   this.getList();
                 }
