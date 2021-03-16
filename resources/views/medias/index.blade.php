@@ -58,7 +58,7 @@
       <div v-if="parseInt(uploadType) === 1">
         <div class="mb-3">
           <label for="image" class="form-label">画像ファイルを選択してください</label>
-          <input class="form-control" type="file" id="image" ref="image" @change="onFileChange">
+          <input class="form-control" type="file" accept="image/*" id="image" ref="image" @change="onFileChange">
         </div>
 
         <div class="mb-3">
@@ -75,12 +75,12 @@
         viedo upload用（途中）
         <div class="mb-3">
           <label for="video" class="form-label">動画ファイルを選択してください</label>
-          <input class="form-control" type="file" id="video" ref="video" @change="onFileChange">
+          <input class="form-control" type="file" accept="audio/mp4" id="video" ref="video" @change="onFileChange">
         </div>
 
         <div class="mb-3">
           <label for="poster" class="form-label">サムネイル用の画像ファイルを選択してください</label>
-          <input class="form-control" type="file" id="poster" ref="poster" @change="onPosterChange">
+          <input class="form-control" type="file" accept="image/*" id="poster" ref="poster" @change="onPosterChange">
         </div>
 
         <div class="mb-3">
