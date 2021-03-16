@@ -55,7 +55,7 @@
         </select>
       </div>
 
-      <div v-if="this.uploadType === 1">
+      <div v-if="parseInt(uploadType) === 1">
         <div class="mb-3">
           <label for="image" class="form-label">画像ファイルを選択してください</label>
           <input class="form-control" type="file" id="image" @change="onFileChange">
@@ -70,7 +70,8 @@
           <input class="form-control" type="text" id="memo1" v-model="memo">
         </div>
       </div>
-      <div v-else>
+
+      <div v-else-if="parseInt(uploadType) === 2">
         viedo upload用（途中）
         <div class="mb-3">
           <label for="video" class="form-label">動画ファイルを選択してください</label>
@@ -196,6 +197,7 @@
           }
           this.uplodedFile = file;
         },
+        //imageの場合のプレビュー表示
         createImage(file) {
           const reader = new FileReader();
           reader.onload = e => {
