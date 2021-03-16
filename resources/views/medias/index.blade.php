@@ -75,7 +75,7 @@
         viedo upload用（途中）
         <div class="mb-3">
           <label for="video" class="form-label">動画ファイルを選択してください</label>
-          <input class="form-control" type="file" accept="audio/mp4" id="video" ref="video" @change="onFileChange">
+          <input class="form-control" type="file" accept="video/mp4" id="video" ref="video" @change="onFileChange">
         </div>
 
         <div class="mb-3">
