@@ -55,18 +55,37 @@
         </select>
       </div>
 
-      <div class="mb-3">
-        <label for="uploaded-media" class="form-label">ファイルを選択してください</label>
-        <input class="form-control" type="file" id="uploaded-media" @change="onFileChange">
-      </div>
+      <div v-if="this.uploadType === 1">
+        <div class="mb-3">
+          <label for="image" class="form-label">画像ファイルを選択してください</label>
+          <input class="form-control" type="file" id="image" @change="onFileChange">
+        </div>
 
-      <div class="mb-3">
-        <img v-show="previewImage" :src="previewImage" alt="" />
-      </div>
+        <div class="mb-3">
+          <img v-show="previewImage" :src="previewImage" alt="" />
+        </div>
 
-      <div class="mb-3">
-        <label for="memo" class="form-label">ファイルの説明を入力してください</label>
-        <input class="form-control" type="text" id="memo" v-model="memo">
+        <div class="mb-3">
+          <label for="memo1" class="form-label">ファイルの説明を入力してください</label>
+          <input class="form-control" type="text" id="memo1" v-model="memo">
+        </div>
+      </div>
+      <div v-else>
+        viedo upload用（途中）
+        <div class="mb-3">
+          <label for="video" class="form-label">動画ファイルを選択してください</label>
+          <input class="form-control" type="file" id="video" @change="onFileChange">
+        </div>
+
+        <div class="mb-3">
+          <label for="poster" class="form-label">サムネイル用の画像ファイルを選択してください</label>
+          <input class="form-control" type="file" id="poster" ref="poster">
+        </div>
+
+        <div class="mb-3">
+          <label for="memo2" class="form-label">ファイルの説明を入力してください</label>
+          <input class="form-control" type="text" id="memo2" v-model="memo">
+        </div>
       </div>
 
       <div>
@@ -171,13 +190,11 @@
           alert(`コピーできました！ : ${copyTarget}`);
         },
         onFileChange(e) {
-          const files = e.target.files || e.dataTransfer.files;
-          if (files[0].type.includes('image')) {
-            this.createImage(files[0]);
-          } else {
-            this.previewImage = false;
+          const file = e.target.files[0] || e.dataTransfer.files[0];
+          if (this.uploadType === 1) {
+            this.createImage(file);
           }
-          this.uplodedFile = e.target.files[0];
+          this.uplodedFile = file;
         },
         createImage(file) {
           const reader = new FileReader();
@@ -201,7 +218,7 @@
                   alert('アップロード成功！');
                   this.uploadType = 1;
                   this.memo = '';
-                  this.$refs['media'].value = '';
+                  // this.$refs['media'].value = '';
                   this.previewImage = '';
                 }
               })
@@ -209,7 +226,7 @@
                 console.log(error);
               });
           }
-          this.getList();
+          this.getList(); //ここじゃないっぽい。。。
         },
       },
       mounted() {
