@@ -124,12 +124,16 @@
             <th>種類</th>
             <th>メモ</th>
             <th>URL</th>
+            <th></th>
           </tr>
           <tr v-for="media in filterdList" :key="media.id" @click="copyToClipboard(media)">
             <td v-text="media.type"></td>
             <td v-text="media.memo"></td>
-            <td v-text="media.path"></td>
-            <td><img :src="getMediaPath(media)" alt="NO IMAGE" style="width: 80%; height: 50%;"></td>
+            <td v-text="media.url"></td>
+            <td>
+                <img :src="media.url" alt="No Image" style="max-height:100px;" v-if="media.type=='image'">
+                <video :src="media.url" style="max-height:100px;" controls v-else-if="media.type=='video'"></video>
+            </td>
           </tr>
         </table>
         <button class="btn btn-danger" @click="modalClose">閉じる</button>
@@ -164,7 +168,7 @@
       },
       methods: {
         getList() {
-          const url = 'medias/list';
+          const url = '/medias/list';
           axios.get(url)
             .then(response => {
               this.medias = response.data;
@@ -181,7 +185,7 @@
           return `${media.path}`;
         },
         copyToClipboard(media) {
-          const copyTarget = media.path;
+          const copyTarget = media.url;
           const el = document.createElement('textarea');
           el.value = copyTarget;
           el.setAttribute('readonly', '');
@@ -234,12 +238,12 @@
             axios.post('/medias/upload', formData)
               .then(response => {
                 if (response.data.result) {
+                  this.getList();
                   alert('アップロード成功！');
                   this.uploadType = 1;
                   this.memo = '';
                   this.$refs['image'].value = '';
                   this.previewImage = '';
-                  this.getList();
                 }
               })
               .catch(error => {
