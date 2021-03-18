@@ -16,7 +16,7 @@ class CreateMediaTable extends Migration
     Schema::create('media', function (Blueprint $table) {
       $table->id();
       $table->string('type', 20)->comment('メディアの種類');
-      $table->string('path')->comment('ファイルのパス');
+      $table->string('filename')->comment('ファイル名');
       $table->string('memo')->nullable()->comment('メモ');
       $table->timestamps();
     });
