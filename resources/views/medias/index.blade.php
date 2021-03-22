@@ -131,8 +131,9 @@
             <td v-text="media.memo"></td>
             <td v-text="media.url"></td>
             <td>
-                <img :src="media.url" alt="No Image" style="max-height:100px;" v-if="media.type=='image'">
-                <video :src="media.url" style="max-height:100px;" controls v-else-if="media.type=='video'"></video>
+              <img :src="media.url" alt="No Image" style="max-height:100px;" v-if="media.type=='image'">
+              <video :src="media.url" style="max-height:100px;" controls controlsList="nodownload"
+                oncontextmenu="return false;" v-else-if="media.type=='video'"></video>
             </td>
           </tr>
         </table>
