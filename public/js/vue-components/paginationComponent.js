@@ -2,9 +2,16 @@ const paginationComponent = {
   props: {
     data: {}, // paginate()で取得したデータ
   },
+  data() {
+    return {
+      range: 3,
+      size: 6,
+      frontDot: false,
+      endDot: false,
+    };
+  },
   methods: {
     move(page) {
-      // console.log(page);
       if (!this.isCurrentPage(page)) {
         this.$emit('move-page', page);
       }
@@ -12,44 +19,103 @@ const paginationComponent = {
     isCurrentPage(page) {
       return this.data.current_page == page;
     },
-    getPageClass(page) {
-      let classes = ['page-item'];
-
+    isActive(page) {
       if (this.isCurrentPage(page)) {
-        classes.push('active');
+        return 'active';
       }
-
-      return classes;
+    },
+    calRange(start, end) {
+      const range = [];
+      for (let i = start; i <= end; i++) {
+        range.push(i);
+      }
+      return range;
     },
   },
   computed: {
+    sizeCheck() {
+      if (this.data.last_page < this.size) {
+        return false;
+      }
+      return true;
+    },
     hasPrev() {
       return this.data.prev_page_url != null;
     },
     hasNext() {
       return this.data.next_page_url != null;
     },
-    pages() {
-      let pages = [];
-
-      for (let i = 1; i <= this.data.last_page; i++) {
-        pages.push(i);
+    frontPageRange() {
+      if (!this.sizeCheck) {
+        this.frontDot = false;
+        this.endDot = false;
+        return this.calRange(1, this.data.last_page);
+      }
+      return this.calRange(1, 2);
+    },
+    middlePageRange() {
+      if (!this.sizeCheck) {
+        return [];
       }
 
-      return pages;
+      let start = '';
+      let end = '';
+
+      if (this.data.current_page <= this.range) {
+        start = 3;
+        end = this.range + 2;
+        this.frontDot = false;
+        this.endDot = true;
+      } else if (this.data.current_page > this.data.last_page - this.range) {
+        start = this.data.last_page - this.range - 1;
+        end = this.data.last_page - 2;
+        this.frontDot = true;
+        this.endDot = false;
+      } else {
+        start = this.data.current_page - Math.floor(this.range / 2);
+        end = this.data.current_page + Math.floor(this.range / 2);
+        this.frontDot = true;
+        this.endDot = true;
+      }
+      return this.calRange(start, end);
+    },
+    endPageRange() {
+      if (!this.sizeCheck) {
+        return [];
+      }
+      return this.calRange(this.data.last_page - 1, this.data.last_page);
     },
   },
   template: `
-    <ul class="pagination">
-      <li class="page-item" v-if="hasPrev">
-        <a class="page-link" href="#" @click.prevent="move(data.current_page-1)">前へ</a>
-      </li>
-      <li :class="getPageClass(page)" v-for="page in pages">
-        <a class="page-link" href="#" v-text="page" @click.prevent="move(page)"></a>
-      </li>
-      <li class="page-item" v-if="hasNext">
-        <a class="page-link" href="#" @click.prevent="move(data.current_page+1)">次へ</a>
-      </li>
-    </ul>
-    `,
+  <ul class="v-pagination">
+    <li
+      v-show="hasPrev"
+      @click="move(data.current_page-1)"
+    >&laquo;</li>
+    <li
+      v-for="page in frontPageRange"
+      :key="page"
+      @click="move(page)"
+      :class="isActive(page)"
+    >{{page}}</li>
+    <li v-show="frontDot" class="disabled">…</li>
+    <li
+      v-for="page in middlePageRange"
+      :key="page"
+      @click="move(page)"
+      :class="isActive(page)"
+    >{{page}}</li>
+    <li v-show="endDot" class="disabled">…</li>
+    <li
+      v-for="page in endPageRange"
+      :key="page"
+      @click="move(page)"
+      :class="isActive(page)"
+    >{{page}}</li>
+    <li
+      v-show="hasNext"
+      @click="move(data.current_page+1)"
+    >&raquo;</li>
+  </ul>
+  `,
 };
