@@ -2,30 +2,6 @@
 
 @section('css')
   <link rel="stylesheet" href="{{ asset('css/norm.css') }}" />
-  <style>
-    .v-pagination {
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .v-pagination li {
-      border: 1px solid brown;
-      padding: 0.6rem 1.2rem;
-      text-align: center;
-      color: brown;
-      cursor: pointer;
-    }
-
-    .v-pagination li.active {
-      background-color: brown;
-      color: #fff;
-    }
-
-    .v-pagination li.disabled {
-      cursor: not-allowed;
-    }
-
-  </style>
 @endsection
 
 @section('main')
@@ -36,6 +12,13 @@
     </h1>
     <div class="list-container">
       <div class="list-container__selector">
+        {{-- <ul>
+          <li id="tabs-menu-0" class="category-tabs" @click="selectCategory(0)">전체</li>
+          <li id="tabs-menu-1" class="category-tabs" @click="selectCategory(1)">맞춤법</li>
+          <li id="tabs-menu-2" class="category-tabs" @click="selectCategory(2)">발음</li>
+          <li id="tabs-menu-3" class="category-tabs" @click="selectCategory(3)">띄여쓰기</li>
+          <li id="tabs-menu-4" class="category-tabs" @click="selectCategory(4)">기타</li>
+        </ul> --}}
         <category-select-button :categories="categories" v-model="categoryNo" @child-click="selectCategory">
         </category-select-button>
       </div>
@@ -131,6 +114,15 @@
           }
 
           location.hash = `${this.page}%${this.categoryNo}`;
+
+          // const tabs = document.querySelectorAll('.category-tabs');
+          // tabs.forEach(tab => {
+          //   tab.classList.remove('active');
+          // });
+
+          // const selectedTab = document.querySelector(`#tabs-menu-${this.categoryNo}`);
+          // selectedTab.classList.add('active');
+
           this.getItems();
         }
       },
