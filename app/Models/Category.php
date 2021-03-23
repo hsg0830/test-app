@@ -5,12 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Article;
+use App\Models\normArticle;
 
 class Category extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    public function articles() {
-        return $this->hasMany(Article::class);
-    }
+  public function articles()
+  {
+    return $this->hasMany(Article::class);
+  }
+
+  public function normArticles()
+  {
+    return $this->hasMany(normArticle::class);
+  }
 }
