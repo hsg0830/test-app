@@ -8,6 +8,7 @@ use App\Http\Controllers\ArticleController; //※追加
 use App\Http\Controllers\PaginationController; //※追加
 use App\Http\Controllers\Ajax\AjaxPaginationController; //※追加
 use App\Http\Controllers\MediaController;
+use App\Http\Controllers\normArticlesController;
 use Laravel\Jetstream\Rules\Role;
 
 /*
@@ -23,6 +24,15 @@ use Laravel\Jetstream\Rules\Role;
 
 Route::get('/', function () {
   return view('welcome');
+});
+
+//サブブロックを別テーブルに分けた投稿機能のテスト
+
+Route::prefix('norms')->group(function () {
+  Route::get('articles/create', [normArticlesController::class, 'create']);
+  Route::post('articles', [normArticlesController::class, 'store']);
+  Route::get('articles/{normArticle}', [normArticlesController::class, 'show']);
+  Route::get('categories', [normArticlesController::class, 'categories']);
 });
 
 //ファイル保存・一覧表示機能のテスト

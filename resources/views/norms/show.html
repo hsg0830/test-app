@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>얼 -우리 말 배움터-</title>
+
+    <!-- 각종 서체 -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <!-- Namun -->
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet" />
+    <!-- Noto -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+    <!-- Sunflower -->
+    <link href="https://fonts.googleapis.com/css2?family=Sunflower:wght@300;500;700&display=swap" rel="stylesheet" />
+    <!-- Jua -->
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet" />
+    <!-- Dokdo -->
+    <link href="https://fonts.googleapis.com/css2?family=Dokdo&display=swap" rel="stylesheet" />
+    <!-- Poor -->
+    <link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet" />
+    <!-- Songmyong -->
+    <link href="https://fonts.googleapis.com/css2?family=Song+Myung&display=swap" rel="stylesheet" />
+
+    <script src="https://kit.fontawesome.com/a57480febd.js" crossorigin="anonymous"></script>
+
+    <!-- destyle -->
+    <link rel="stylesheet" href="../../css/destyle.css" />
+
+    <!-- ツールチップ -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tooltipster/3.0.5/css/tooltipster.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/tooltipster-noir.css" />
+
+    <!-- 共通 -->
+    <link rel="stylesheet" href="../../css/common.css" />
+
+    <!-- 規範関連ページ用 -->
+    <link rel="stylesheet" href="../../css/norm.css" />
+  </head>
+  <body>
+    <!-- ↓↓↓ヘッダー↓↓↓ -->
+    <header id="header">
+      <div class="cover">
+        <div class="sp-fixed">
+          <div class="sp-fixed__logo">
+            <a href="#"><img src="../../img/logo_sp_white.png" alt="" /></a>
+          </div>
+          <button class="sp-btn"></button>
+        </div>
+        <div class="cover__btn-group">
+          <button class="global-btn" onclick="location.href='#'">로 그 인</button>
+          <button class="global-btn" onclick="location.href='#'">문의하기</button>
+        </div>
+        <div class="cover__logo">
+          <a href="#"><img src="../../img/logo_pc_white_orange.png" alt="얼 -우리 말 배움터-" /></a>
+        </div>
+        <img class="cover__clock" src="../../img/clock.png" alt="" />
+      </div>
+      <!-- PC用のグローバルメニュー -->
+      <nav class="global-nav">
+        <div class="pc-fixed-logo">
+          <a href="#"><img src="../../img/logo_sp_white.png" alt="얼 우리 말 배움터" /></a>
+        </div>
+        <ul>
+          <li><a href="#">학습실</a></li>
+          <li><a href="../index.html">언어규범</a></li>
+          <li><a href="#">코퍼스</a></li>
+          <li><a href="#">사전</a></li>
+          <li><a href="#">자료실</a></li>
+          <li><a href="#">질의응답</a></li>
+        </ul>
+        <button class="nav-login-btn global-btn" onclick="location.href='#'">로 그 인</button>
+      </nav>
+      <!-- SPハンバーガー用のナビゲーション -->
+      <nav class="sp-nav">
+        <ul>
+          <li><a href="#">로그인</a></li>
+          <li><a href="#">학습실</a></li>
+          <li><a href="../index.html">언어규범</a></li>
+          <li><a href="#">코퍼스</a></li>
+          <li><a href="#">사전</a></li>
+          <li><a href="#">자료실</a></li>
+          <li><a href="#">질의응답</a></li>
+          <li><a href="#">문의하기</a></li>
+        </ul>
+      </nav>
+    </header>
+    <!-- ↑↑↑ヘッダー↑↑↑ -->
+
+    <!-- ↓↓↓パンくずリスト↓↓↓ -->
+    <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="#">
+          <span itemprop="name">홈</span>
+        </a>
+        <meta itemprop="position" content="1" />
+      </li>
+
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../index.html">
+          <span itemprop="name">언어규범</span>
+        </a>
+        <meta itemprop="position" content="2" />
+      </li>
+
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="./index.html">
+          <span itemprop="name">각종 규범해설</span>
+        </a>
+        <meta itemprop="position" content="3" />
+      </li>
+    </ol>
+    <!-- ↑↑↑パンくずリスト↑↑↑ -->
+
+    <!-- ↓↓↓.wrapper：メイン＋サイド↓↓↓ -->
+    <div class="wrapper">
+      <!-- ↓↓↓メインコンテンツ↓↓↓ -->
+      <main id="main">
+        <!-- タイトル部 -->
+        <div class="title-block">
+          <!-- <img src="../../img/bg_black-board_thum.png" alt="" /> -->
+          <div class="title-block__category">맞춤법</div>
+          <h1 class="title-block__title">맞춤법이란 무엇인가?</h1>
+          <div class="title-block__date">갱신날자: <time>2021-01-31</time></div>
+        </div>
+        <!-- タイトル部 -->
+
+        <!-- 本文部 -->
+        <div class="content-block">
+          <section class="content-section">
+            <div class="section-title-block">
+              <span class="section-title-block__number">1</span>
+              <h3 class="section-title-block__title">표음문자와 맞춤법</h3>
+            </div>
+            <div class="section-content-block">
+              <p>조선말의 맞춤법에 대하여 알기 전에 맞춤법이란 무엇인가를 확인해보자.</p>
+              <p>
+                세계에는 수많은 문자(文字)가 존재한다. 우리 생활에 가까운 문자만 해도 조선글자를 비롯하여 히라가나, 가따가나, 한자, 라틴글자 등
+                여러가지가 있다.
+                <sup
+                  class="caption tooltip"
+                  title="《라틴글자》란 일본에서 흔히 《ローマ字》라고 불리우는 《a, b, c…》 등의 글자를 말한다. 우리 말에서는 《로마자(로마글자, 로마문자)》, 《라틴자(라틴문자, 라틴글자)》등으로 불리우며 오늘 우리 나라에서는 《라틴글자》라는 명칭이 가장 흔하게 쓰인다."
+                  >[1]
+                </sup>
+              </p>
+              <p>
+                그런데 그 많은 문자들은 글자 하나하나가 무엇을 나타내는가에 따라 크게 한자와 같은
+                <span class="emphasis">《표어문자》</span>(表語文字)와 라틴글자, 히라가나와 같은
+                <span class="emphasis">《표음문자》</span>(表音文字)로 갈라볼수 있다.
+                <sup
+                  class="caption tooltip"
+                  title="《표어문자》란 한자와 같이 글자 하나하나가 단어나 형태부를 나타내는 문자를 가리키며 《표음문자》란 라틴문자나 히라가나, 가따가나처럼 글자 하나하나가 어떤 소리를 나타내는 문자를 말한다. 그중 《표음문자》에는 라틴글자처럼 글자 하나하나가 자음이나 모음 등의 말소리(어음)를 나타내는 《자모문자》(字母文字), 히라가나나 가따가나처럼 글자 하나하나가 하나의 소리마디(음절)를 나타내는 《음절문자》(音節文字)가 있다."
+                  >[2]
+                </sup>
+              </p>
+              <p>일반적으로 <span class="emphasis">《맞춤법》</span>이란:</p>
+              <blockquote class="quote">말을 표음문자로 적을 때에 지켜야 할 통일적인 규칙과 규범</blockquote>
+              <p>
+                을 말한다. 다른 말로 《철자법》(綴字法), 《정자법》(正字法)이라고도 하는데 우리 나라에서는 그중 《정자법》이라는 용어는 잘 쓰지
+                않는다.
+                <sup class="caption tooltip" title="맞춤법은 일본말로 《正書法》, 《綴字法（ていじほう／てつじほう）》.">[3] </sup>
+              </p>
+            </div>
+          </section>
+
+          <section class="content-section">
+            <div class="section-title-block">
+              <span class="section-title-block__number">2</span>
+              <h3 class="section-title-block__title">조선글자와 맞춤법</h3>
+            </div>
+            <div class="section-content-block">
+              <p>
+                조선글자도 글자 하나하나에 뜻은 없고 글자 하나하나가 어떤 소리를 나타내는 표음문자이기때문에 우리 말을 조선글자로 적으려고 한다면
+                표기상의 통일적인 규칙과 규범이 필요된다. 그 규칙과 규범을 정해놓은것이 바로 맞춤법이다.
+              </p>
+              <p>
+                《山が》에 해당되는 우리 말 [sani]를 조선글자로 표기할 때 그것을
+                <span class="moving-underline"
+                  >《산이》로 적어야 할것인지 《사니》로 적어야 할것인지 통일할 필요가 있으며 그것을 정해놓은 규범이 바로 맞춤법</span
+                >이다.
+              </p>
+            </div>
+          </section>
+
+          <section class="content-section">
+            <div class="section-title-block">
+              <span class="section-title-block__number">3</span>
+              <h3 class="section-title-block__title">우리 나라의 맞춤법</h3>
+            </div>
+            <div class="section-content-block">
+              <p>
+                현재 우리 나라에서는 2010년 10월에 나온 《맞춤법》(《조선말규범집》에 실림)에 따라 서사생활을 하고있는데 우리 나라에서 조선말맞춤법은
+                다음과 같은 변천과정을 거쳐왔다:
+              </p>
+              <blockquote class="quote">
+                <p>
+                  1933년 한글맞춤법통일안 (조선어학회)
+                  <sup
+                    class="caption tooltip"
+                    title="조선어학회가 1933년 10월에 발표한 맞춤법. 그후 1936년 10월에 《사정한 조선어 표준말 모음》이 발표된데 따라 1937년 5월에 수정판이 나왔으며 1940년 6월과 1946년 9월에 두차례에 걸쳐 일부를 수정한 개정판이 나왔다. 여기서 책이름 등의 띄여쓰기는 우리 나라 현행 띄여쓰기규정을 따랐음."
+                    >[4]
+                  </sup>
+                </p>
+                <p>
+                  1954년 조선어철자법 (조선어철자법규정작성위원회 )
+                  <sup
+                    class="caption tooltip"
+                    title="1954년초 당시 과학원 조선어 및 조선문학연구소안에 《조선어철자법규정작성위원회》가 조직되여 같은해 4월에 《조선어철자법》초안이 완성되였으며 그후 2개월 남짓한 기간에 걸친 집체적인 토의끝에 《조선어철자법》이 발간되였다."
+                    >[5]
+                  </sup>
+                  <sup
+                    class="caption tooltip"
+                    title="해방후 우리 나라에서는 1948년 1월에 몇몇 언어학자들이 집체적토의를 거치지 않고 내놓은 《조선어신철자법》이 나왔으나 언어실천에 도입되지 못하였다."
+                    >[6]
+                  </sup>
+                </p>
+                <p>
+                  1966년 맞춤법 (《조선말규범집》, 국어사정위원회 )
+                  <sup
+                    class="caption tooltip"
+                    title="국어사정위원회(國語査定委員會)는 1966년 3월에 설립된 내각직속기관으로서 우리 나라 언어정책을 시행하는데 중심적인 역할을 하며 《맞춤법》을 비롯한 각종 언어규범도 여기서 제정된다. 사회과학원에 사무국이 상설되여있다."
+                    >[7]
+                  </sup>
+                </p>
+                <p>1988년 맞춤법 (《조선말규범집》, 국어사정위원회)</p>
+                <p>2010년 맞춤법 (《조선말규범집》, 국어사정위원회)</p>
+              </blockquote>
+            </div>
+          </section>
+
+          <section class="content-section">
+            <div class="section-title-block">
+              <span class="section-title-block__number">4</span>
+              <h3 class="section-title-block__title">우리 글자의 이름</h3>
+            </div>
+            <div class="section-content-block">
+              <p>
+                <span class="emphasis">《한글》</span>이란 우리 글자의 명칭으로서 북남을 막론하고 사용된다. 다만 우리 나라에서는 《한글》대신
+                <span class="emphasis">《조선글자》</span>로 부르는 일이 많다.
+              </p>
+              <p>
+                15세기에 창제된 우리 글자는 창제된 당시
+                <span class="emphasis">《훈민정음》</span> 또는 <span class="emphasis">《정음》</span>으로 불렀다. 그후 《한문》(漢文)에 대비하여
+                <span class="emphasis">《언문》</span>(諺文)으로 부르는 일도 많았으나 《상말》(상스러운 비문화적이며 비도덕적인 말) 등의 의미를 가지는
+                《諺》자를 쓰는것은 스스로를 낮추어 말하는것이 되므로 오늘날 이 말은 쓰지 않는다.
+              </p>
+              <p>
+                《한글》이라는 명칭은 조선어학자
+                <span class="emphasis">주시경</span>(周時經 1876-1914)이 지은것으로 알려져있다. 《위대한》, 《큰》을 뜻하는 《한》과 《문자》나
+                《글》을 뜻하는 《글》을 합하여 《위대한 글자》라고 《한글》로 명명한것이다.
+                <sup
+                  class="caption tooltip"
+                  title="《한》은 《크다, 위대하다》등의 뜻을 나타내는 말이였던 《하다》에 규정토《-(으)ㄴ》이 붙은것. 참고로 《할아버지》라는 말은 이 《한》이 들어간 《한(큰) + 아버지》가 변하여 이루어진 말이다."
+                  >[8]
+                </sup>
+              </p>
+              <p>
+                여러가지 사정으로 오늘 일본에서는 《ハングル》라는 말로 글자가 아닌 우리 말 그자체를 가리키는 경우도 많으나 원래
+                <span class="moving-underline"> 《한글》이 《히라가나》, 《가따가나》와 같이 글자체계의 명칭 </span>
+                이라는 사실은 알아둘 필요가 있을것이다.
+              </p>
+            </div>
+          </section>
+        </div>
+        <!-- 本文部 -->
+      </main>
+      <!-- ↑↑↑メインコンテンツ↑↑↑ -->
+
+      <!-- ↓↓↓サイドメニュー↓↓↓ -->
+      <aside id="sidemenu">
+        <div class="side-board">
+          <h3 class="list-heading">최근 기사</h3>
+          <ol class="list list__recently">
+            <li>
+              <a href="#">
+                <p class="list__category">맞춤법</p>
+                <p class="list__date">2021-01-31</p>
+                <p class="list__title">맞춤법이란 무엇인가?</p>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <p class="list__category">띄여쓰기</p>
+                <p class="list__date">2021-01-29</p>
+                <p class="list__title">현행 띄여쓰기규정은 언제 나왔는가?</p>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <p class="list__category">발음</p>
+                <p class="list__date">2021-01-27</p>
+                <p class="list__title">[다갈]도 [달갈]도 틀리지 않는다는게 사실일가?</p>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <p class="list__category">기타</p>
+                <p class="list__date">2021-01-18</p>
+                <p class="list__title">맞춤법이란 무엇인가?</p>
+              </a>
+            </li>
+          </ol>
+          <div class="list-more">
+            <a href="#"> <i class="fas fa-angle-double-right"></i>더보기 </a>
+          </div>
+        </div>
+        <ul class="list list__board">
+          <li>
+            <a href="../index.html"> <i class="fas fa-caret-right"></i>각종 규범원문 </a>
+          </li>
+          <li>
+            <a href="../columns/index.html"> <i class="fas fa-caret-right"></i>언어규범과 관련한 각종 해설 </a>
+          </li>
+          <li>
+            <a href="../examples/index.html"> <i class="fas fa-caret-right"></i>언어규범과 관련한 Q&A </a>
+          </li>
+        </ul>
+      </aside>
+      <!-- ↑↑↑サイドメニュー↑↑↑ -->
+    </div>
+    <!-- ↑↑↑.wrapper：メイン＋サイド↑↑↑ -->
+
+    <!-- トップに戻るボタン -->
+    <a href="#" class="back-to-top">▲</a>
+
+    <!-- ↓↓↓フッター↓↓↓ -->
+    <footer id="footer">
+      <ul>
+        <li><a href="#">학습실</a></li>
+        <li><a href="../index.html">언어규범</a></li>
+        <li><a href="#">코퍼스</a></li>
+        <li><a href="#">사전</a></li>
+        <li><a href="#">자료실</a></li>
+        <li><a href="#">질의응답</a></li>
+        <li><a href="#">문의하기</a></li>
+      </ul>
+    </footer>
+    <!-- ↑↑↑フッター↑↑↑ -->
+
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.min.js"
+      integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- ツールチップ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tooltipster/3.0.5/js/jquery.tooltipster.js"></script>
+    <!-- 共通 -->
+    <script src="../../js/main.js"></script>
+    <!-- 規範関連ページ用 -->
+    <script src="../../js/norm.js"></script>
+  </body>
+</html>
