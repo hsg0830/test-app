@@ -38,6 +38,8 @@
       transform: translate(-50%, -50%);
       padding: 40px;
       width: 80%;
+      max-height: 80%;
+      overflow: auto;
     }
 
   </style>
@@ -129,7 +131,7 @@
           <tr v-for="media in filterdList" :key="media.id" @click="copyToClipboard(media)">
             <td v-text="media.type"></td>
             <td v-text="media.memo"></td>
-            <td v-text="media.url"></td>
+            <td v-text="media.url" style="width: 30%; word-break: break-all; text-align: justify;"></td>
             <td>
               <img :src="media.url" alt="No Image" style="max-height:100px;" v-if="media.type=='image'">
               <video :src="media.url" style="max-height:100px;" controls controlsList="nodownload"
