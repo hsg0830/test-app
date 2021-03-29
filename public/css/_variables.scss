@@ -6,13 +6,21 @@
 // 色の指定
 $orange: #ed8400;
 $red: #ab243b;
+// $red: #b9102d;
+$green: #19775f; //어휘
+$navy: #2a3773; //단어장
+$vermilion: #d44a28; //문법
+$purple: #9e1e53; //들어보기
 $darkBrown: #3b2213;
 $brown: #895d3b;
+$brown: #6a421f;
 $lightBrown: #cba67e;
 // $beige: #d9cbbf;
-$beige: #d6c7ba;
+$beige: #d6c7ba; //ヤンギトンム提案色
+// $beige: #dec9b7; //うひトンム提案色
 // $base: #ecebe8;
-$base: #eee5df;
+$base: #eee5df; //ヤンギトンム提案色
+// $base: #efe3d9; //うひトンム提案色
 $black: #231815;
 $gray: #494949;
 $white: #ffffff;
@@ -20,13 +28,13 @@ $pink: #f1d9e9;
 $yellow: #fffcf4;
 
 // フォント
-$krNamun: "Nanum Gothic", sans-serif;
-$krNoto: "Noto Sans KR", sans-serif;
-$krSunflower: "Sunflower", sans-serif;
-$krJua: "Jua", sans-serif;
-$krDokdo: "Dokdo", cursive;
-$krPoor: "Poor Story", cursive;
-$krSongmyong: "Song Myung", serif;
+$krNamun: 'Nanum Gothic', sans-serif;
+$krNoto: 'Noto Sans KR', sans-serif;
+$krSunflower: 'Sunflower', sans-serif;
+$krJua: 'Jua', sans-serif;
+$krDokdo: 'Dokdo', cursive;
+$krPoor: 'Poor Story', cursive;
+$krSongmyong: 'Song Myung', serif;
 
 //固定幅のサイズ
 $maxWidth: 1400px;

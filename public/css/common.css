@@ -141,7 +141,7 @@ a:hover {
 }
 
 .caption {
-  color: #895d3b;
+  color: #6a421f;
   border-bottom: 2px dotted #cba67e;
 }
 
@@ -155,7 +155,7 @@ a:hover {
 .global-btn {
   width: 10rem;
   height: 3.5rem;
-  background-color: #895d3b;
+  background-color: #6a421f;
   color: #ffffff;
   border-radius: 0.3rem;
   -webkit-box-shadow: 0 0 0.3rem silver;
@@ -273,7 +273,7 @@ a:hover {
   top: 0;
   left: 0;
   background-image: url(../img/bar.png);
-  background-color: #895d3b;
+  background-color: #6a421f;
   z-index: 200;
 }
 
@@ -356,7 +356,7 @@ html.open,
   left: 0;
   width: 100%;
   height: 100vh;
-  background-color: rgba(137, 93, 59, 0.95);
+  background-color: rgba(106, 66, 31, 0.95);
   color: #ffffff;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -503,7 +503,7 @@ html.open,
 }
 
 .breadcrumb li a:not(:last-child) {
-  color: #895d3b;
+  color: #6a421f;
 }
 
 .breadcrumb li:first-child a::before {
@@ -524,7 +524,7 @@ html.open,
   width: 6rem;
   height: 6rem;
   background-color: #f0f0f0;
-  color: #895d3b;
+  color: #6a421f;
   font-size: 2.5rem;
   line-height: 6rem;
   text-align: center;
@@ -668,7 +668,7 @@ html.open,
 
 .side-board .list-heading {
   margin: 0.5rem 0 1rem;
-  color: #895d3b;
+  color: #6a421f;
   text-align: center;
   font-size: 2.5rem;
   letter-spacing: 0.3rem;
@@ -679,7 +679,7 @@ html.open,
   display: block;
   width: 7rem;
   margin-left: auto;
-  color: #895d3b;
+  color: #6a421f;
   font-size: 1.5rem;
 }
 
@@ -697,7 +697,7 @@ html.open,
   padding-top: 0.7rem;
   padding-bottom: 0.7rem;
   background-color: #fffcf4;
-  border-left: solid 1rem #895d3b;
+  border-left: solid 1rem #6a421f;
   border-bottom: solid 0.2rem #d6c7ba;
   color: #494949;
   font-family: "Sunflower", sans-serif;
@@ -709,12 +709,12 @@ html.open,
 }
 
 .list__sticker li:hover {
-  color: #895d3b;
+  color: #6a421f;
 }
 
 .list__board {
   background-color: #d6c7ba;
-  color: #895d3b;
+  color: #6a421f;
   -webkit-box-shadow: 0 0 0 0.5rem #d6c7ba;
           box-shadow: 0 0 0 0.5rem #d6c7ba;
   border: dashed 0.2rem #fffcf4;
@@ -762,7 +762,7 @@ html.open,
 }
 
 .list__recently li .list__category.second {
-  background-color: #895d3b;
+  background-color: #6a421f;
 }
 
 .list__recently li .list__date {

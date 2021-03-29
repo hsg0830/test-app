@@ -51,7 +51,7 @@
                 @{{ item . description }}
               </p>
               <div class="info">
-                <p class="date">@{{ (item . created_at) | date }}</p>
+                <p class="date">@{{ item . created_at }}</p>
                 <p class="category">@{{ item . category . name }}</p>
               </div>
             </div>
