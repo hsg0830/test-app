@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-@import "variables";
+@import 'variables';
 
 /*---------------------------
   規範原文ページのメイン領域
@@ -31,7 +31,7 @@
 
   &:after {
     position: absolute;
-    content: "";
+    content: '';
     left: -0.8rem;
     top: -0.7rem;
     border-width: 0 0 3rem 3rem;
@@ -266,6 +266,19 @@
       &:hover {
         background-color: rgba($red, 0.7);
         color: $white;
+
+        &.category_1 {
+          background-color: rgba($green, 0.7);
+        }
+        &.category_2 {
+          background-color: rgba($navy, 0.7);
+        }
+        &.category_3 {
+          background-color: rgba($vermilion, 0.7);
+        }
+        &.category_4 {
+          background-color: rgba($purple, 0.7);
+        }
       }
 
       &.active {
@@ -275,7 +288,7 @@
 
         &::after {
           position: absolute;
-          content: "";
+          content: '';
           top: 100%;
           left: 50%;
           transform: translateX(-50%);
@@ -283,6 +296,38 @@
           border-top: 1rem solid $red;
           width: 0;
           height: 0;
+        }
+
+        &.category_1 {
+          background-color: $green;
+
+          &::after {
+            border-top: 1rem solid $green;
+          }
+        }
+
+        &.category_2 {
+          background-color: $navy;
+
+          &::after {
+            border-top: 1rem solid $navy;
+          }
+        }
+
+        &.category_3 {
+          background-color: $vermilion;
+
+          &::after {
+            border-top: 1rem solid $vermilion;
+          }
+        }
+
+        &.category_4 {
+          background-color: $purple;
+
+          &::after {
+            border-top: 1rem solid $purple;
+          }
         }
       }
     }
@@ -498,7 +543,7 @@
       position: absolute;
       top: 1.5rem;
       left: 1.5rem;
-      content: "\f10d";
+      content: '\f10d';
       font-family: FontAwesome;
       color: $beige;
       font-size: 2rem;
@@ -591,8 +636,8 @@
     position: relative;
 
     &:before {
-      font-family: "Font Awesome 5 Free";
-      content: "\f111";
+      font-family: 'Font Awesome 5 Free';
+      content: '\f111';
       font-weight: 900;
       color: $yellow;
       position: absolute;
@@ -607,8 +652,8 @@
     }
 
     &:after {
-      font-family: "Font Awesome 5 Free";
-      content: "\f111";
+      font-family: 'Font Awesome 5 Free';
+      content: '\f111';
       font-weight: 900;
       color: $yellow;
       position: absolute;
